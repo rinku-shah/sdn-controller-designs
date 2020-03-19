@@ -102,8 +102,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
 import org.onosproject.store.AbstractStore;
 import org.onosproject.store.serializers.KryoNamespaces;
 import org.onosproject.store.service.ConsistentMap;
@@ -111,6 +109,8 @@ import org.onosproject.store.service.MapEvent;
 import org.onosproject.store.service.MapEventListener;
 import org.onosproject.store.service.Serializer;
 import org.onosproject.store.service.StorageService;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * MyTunnel application which provides forwarding between each pair of hosts vi
@@ -149,18 +149,14 @@ public class EpcApp {
     protected PacketService packetService;
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
-    public StorageService storageService;
+    protected StorageService storageService;
 
     private ReactivePacketProcessor processor = new ReactivePacketProcessor();
 
-    public ConsistentMap<String, String> exmap;
-    public Map<String, String> ex;
-    public final InternalListener listener = new InternalListener();
+    private ConsistentMap<String, String> exmap;
+    private Map<String, String> ex;
 
-    public ConsistentMap<String, String> uekey_ueip_map;
-    public ConsistentMap<String, String> uekey_guti_map;
-    public final InternalListener listener_ueip = new InternalListener();
-    public final InternalListener listener_guti = new InternalListener();
+    private final InternalListener listener = new InternalListener();
 
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
@@ -175,6 +171,7 @@ public class EpcApp {
         log.info("STARTED EpcApp...", appId.id());
 
 	////////////////
+
 	exmap = storageService.<String, String>consistentMapBuilder()
                 .withSerializer(Serializer.using(KryoNamespaces.API))
                 .withName("byon-networks")
@@ -189,28 +186,12 @@ public class EpcApp {
         exmap.addListener(listener);
         log.info("Started");
 	log.info("Consistent map successfully listening");
-
 	for(int i=1; i<=10; i++){
-	exmap.put(Integer.toString(i), Integer.toString(i));
-	String s = exmap.get(Integer.toString(i)).value(); 
-	log.info("Key = {} , Value = {}",i, s);
+		exmap.put(Integer.toString(i), Integer.toString(i));
+		String s = exmap.get(Integer.toString(i)).value(); 
+		log.info("Key = {} , Value = {}",i, s);
 	}
-	//////////////////
-
-	uekey_ueip_map = storageService.<String, String>consistentMapBuilder()
-                .withSerializer(Serializer.using(KryoNamespaces.API))
-                .withName("uekey_ueip_map")
-                .build();
-        uekey_ueip_map.addListener(listener_ueip);
-	log.info("Consistent uekey_ueip_map successfully listening");
-	
-	uekey_guti_map = storageService.<String, String>consistentMapBuilder()
-                .withSerializer(Serializer.using(KryoNamespaces.API))
-                .withName("uekey_guti_map")
-                .build();
-        uekey_guti_map.addListener(listener_guti);
-	log.info("Consistent uekey_guti_map successfully listening");
-
+	////////////////////
     }
 
     @Deactivate
@@ -222,6 +203,11 @@ public class EpcApp {
         packetService.removeProcessor(processor);
         processor = null;
         log.info("STOPPED");
+
+	////////////
+	exmap.removeListener(listener);
+        log.info("Stopped");
+	//////////
     }
     /**
      * Request packet in via packet service.
@@ -311,9 +297,9 @@ public class EpcApp {
      * Packet processor responsible for forwarding packets along their paths.
      */
     private class ReactivePacketProcessor implements PacketProcessor {
-	//@rinku: Below three maps can be global
+
         private ConcurrentHashMap<String, String> imsi_xres_mapping = new ConcurrentHashMap<String, String>();
-        //private ConcurrentHashMap<String, String> uekey_guti_map = new ConcurrentHashMap<String, String>(); // Key: UE_Key, Value: GUTI
+        private ConcurrentHashMap<String, String> uekey_guti_map = new ConcurrentHashMap<String, String>(); // Key: UE_Key, Value: GUTI
         private ConcurrentHashMap<String, String[]> uekey_nas_keys_map = new ConcurrentHashMap<String, String[]>();		// Key = IMSI, Value = [0]: K_ASME, [1]: NAS Integrity key, NAS Encryption key
         HSS hss = new HSS();
         SGW sgw = new SGW();
@@ -812,7 +798,6 @@ public class EpcApp {
                         DeviceId sgwswitchName = Constants.getSgwswitchName(dgw_dpId);
                         /*******************install uplink rules on SGW and PGW in this method********************/
                         String ip_sgw;
-			//@rinku: SGW accesses a global map at contactPGW function
                         ip_sgw = sgw.contactPGW(appId,flowRuleService,sgwswitchName,sgw_dpId, pgw_dpId, tmpArray[1]); //tmpArray[1] => apn of UE
                         
                         response = new StringBuilder();
@@ -844,11 +829,9 @@ public class EpcApp {
                         
                         /* UPLINK   => ipv4srcAddr = UE IP and ipv4dstAddr = Sink IP   */
                         fr.insertUplinkTunnelIngressRule(false, appId, flowRuleService, deviceId,UE_IPAddr, Constants.dstSinkIpAddr, sgw_teid, outPort);
-		
-			//@rinku: uekey_ueip_map is global
+
                          // key: tmpArray[2] => UE Key, Value: tmpArray2[0] => UE IP
-                        //FT.put(Integer.parseInt(Constants.SEND_APN),dgw_dpId, "uekey_ueip_map", tmpArray[2], tmpArray2[0]); // key: tmpArray[2] => UE Key, Value: tmpArray2[0] => UE IP
-			uekey_ueip_map.put(tmpArray[2], tmpArray2[0]); // key: tmpArray[2] => UE Key, Value: tmpArray2[0] => UE IP
+                        FT.put(Integer.parseInt(Constants.SEND_APN),dgw_dpId, "uekey_ueip_map", tmpArray[2], tmpArray2[0]); // key: tmpArray[2] => UE Key, Value: tmpArray2[0] => UE IP
 
                         //MAP key = UE KEY,  MAP value = SGW_DPID + SEPARATOR + SGW_TEID
                         // @Offload design push sgw_teid to switch table so no need to update in map
@@ -921,16 +904,13 @@ public class EpcApp {
                         DeviceId SGWswitchName1 = Constants.getSgwswitchName(dgw_dpId1);
                             sgw.modifyBearerRequest(appId, flowRuleService, SGWswitchName1, tmpArray2[0], tmpArray2[0], Integer.parseInt(tmpArray2[1]), Integer.parseInt(tmpArray[1]), tmpArray[2]);
 
-			//@rinku: global get
                         //String ue_ip = uekey_ueip_map.get(tmpArray[2]); // tmpArray[2] => ue key
-                        //String ue_ip = FT.get(send_ue_teid_dgw, "uekey_ueip_map", tmpArray[2]); // tmpArray[2] => ue key
-			String ue_ip = uekey_ueip_map.get(tmpArray[2]).value(); // tmpArray[2] => ue key
+                        String ue_ip = FT.get(send_ue_teid_dgw, "uekey_ueip_map", tmpArray[2]); // tmpArray[2] => ue key
 
                         /**************************** Downlinkl flow rules on DGW (DGW -> RAN) ***************************/
                         fr.insertUplinkTunnelForwardRule(false,appId, flowRuleService, deviceId,Integer.parseInt(tmpArray[1]), uePort,0,true);
 
                         response = new StringBuilder();
-			//@rinku: uekey_guti_map is global
                         //NOT USED LATER uekey_guti_map, so not considered in state calc
                         uekey_guti_map.put(tmpArray[2], (Integer.parseInt(tmpArray[2])+1000)+"");
                         FT.put(Integer.parseInt(Constants.SEND_UE_TEID),send_ue_teid_dgw, "ue_state", tmpArray[2], "1");
@@ -1489,8 +1469,8 @@ public class EpcApp {
         short type = eth.getEtherType();
         return type == Ethernet.TYPE_LLDP || type == Ethernet.TYPE_BSN;
     }
-
-	////////////////////////////////
+    
+////////////////////////////////
 
  /*
      * TODO Lab 6: Implement an InternalListener class for remote map events

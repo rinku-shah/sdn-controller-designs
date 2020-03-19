@@ -5,7 +5,7 @@ COMPILE_DEPS = [
     '//protocols/p4runtime/model:onos-protocols-p4runtime-model',
     '//protocols/p4runtime/api:onos-protocols-p4runtime-api',
     '//utils/misc:onlab-misc',
-    
+    '//core/store/serializers:onos-core-serializers',
 ]
 
 osgi_jar(

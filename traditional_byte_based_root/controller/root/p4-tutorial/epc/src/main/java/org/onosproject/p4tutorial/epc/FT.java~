@@ -36,13 +36,13 @@ import static org.slf4j.LoggerFactory.getLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/*import org.onosproject.store.AbstractStore;
+import org.onosproject.store.AbstractStore;
 import org.onosproject.store.serializers.KryoNamespaces;
 import org.onosproject.store.service.ConsistentMap;
 import org.onosproject.store.service.MapEvent;
 import org.onosproject.store.service.MapEventListener;
 import org.onosproject.store.service.Serializer;
-import org.onosproject.store.service.StorageService;*/
+import org.onosproject.store.service.StorageService;
 
 public class FT{
 	private static final Logger log = getLogger(EpcApp.class);
@@ -62,7 +62,7 @@ public class FT{
 	//putArr of length 20
 	static long putArr[] = new long[100];
 
-	/*public FT(){
+	public FT(){
 
 	///////////////////	
 	for(int i=1; i<=10; i++){
@@ -72,7 +72,7 @@ public class FT{
 	}
 	////////////////////
 
-	}*/
+	}
 
 	public static void put(int msgId,String dgwDpId, String mapName, String key, String val){
 		putCount++;

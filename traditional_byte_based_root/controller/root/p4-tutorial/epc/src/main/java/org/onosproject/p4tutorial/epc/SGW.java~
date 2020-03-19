@@ -155,7 +155,7 @@ public class SGW  {
 			log.warn(" of UE apn = {}",apn);
 
 		}
-		//@rinku: SGW_PGW_TEID_MAP is global
+
 		FT.put(Integer.parseInt(Constants.SEND_APN), dgwId, "SGW_PGW_TEID_MAP", String.valueOf(sgw_teid), String.valueOf(pgw_teid));
 
 		/****************************uplink rule on SGW (SGW to PGW) ************************************/
