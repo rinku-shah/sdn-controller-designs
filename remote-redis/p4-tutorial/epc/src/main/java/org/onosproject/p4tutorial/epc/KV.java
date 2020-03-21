@@ -52,24 +52,54 @@ public class KV {
         }
 
 
+    public static void set(String key, String value){
+		try{
+			r.call("SET", key, value);
+		} catch (IOException e) {
+            e.printStackTrace();
+			log.warn("SET: Redis exception occured");
+        }
+	}
+	public static String get(String key){
+		try{
+			String out = new String((byte[])(r.call("GET", key));
+			return out;
+		} catch (IOException e) {
+            e.printStackTrace();
+			log.warn("GET: Redis exception occured");
+        }
+    }
+
 	public KV() {
 //		Jedis jedis = new Jedis("192.168.100.1");		
 		//log.warn("Jedis connected");
 		try{
+<<<<<<< HEAD
 			r = new nl.melp.redis.Redis(new Socket("127.0.0.1", 6379));
+=======
+			nl.melp.redis.Redis r = new nl.melp.redis.Redis(new Socket("127.0.0.1", 6379));
+>>>>>>> f80e9ea9b12feb50d8f51b24dd0b6bbf038c26c8
 			r.call("FLUSHALL");
 
 		for(int i=1; i<=10; i++){
 			//r.call("SET", "foo"+i, Integer.toString(i));
+<<<<<<< HEAD
 			put("foo"+i, Integer.toString(i));
+=======
+			set("foo"+i, Integer.toString(i));
+>>>>>>> f80e9ea9b12feb50d8f51b24dd0b6bbf038c26c8
 		}
 		//r.call("INCRBY", "foo", "456");
 		//String out = new String((byte[])(r.call("GET", "foo25")));
 		//String out = Base64.getEncoder().encodeToString(r.call("GET", "foo"));
 		log.warn("GET value = {}", get("foo10")); // will print '579'
+<<<<<<< HEAD
 		log.warn("DELETE response = {}", del("foo10"));
 		log.warn("DELETE response = {}", del("foo100"));
 		
+=======
+
+>>>>>>> f80e9ea9b12feb50d8f51b24dd0b6bbf038c26c8
                 } catch (IOException e) {
                         e.printStackTrace();
 			log.warn("Redis exception occured");
