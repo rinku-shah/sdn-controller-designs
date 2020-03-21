@@ -2,7 +2,9 @@ COMPILE_DEPS = [
     '//lib:CORE_DEPS',
     '//apps/p4-tutorial/pipeconf:onos-apps-p4-tutorial-pipeconf',
     '//lib:mysql',
-    '//lib:redis',
+    #'//lib:redis',
+    '//lib:io.lettuce',
+    #'//lib:io.projectreactor',
     '//protocols/p4runtime/model:onos-protocols-p4runtime-model',
     '//protocols/p4runtime/api:onos-protocols-p4runtime-api',
     '//utils/misc:onlab-misc',
@@ -16,6 +18,8 @@ osgi_jar(
 BUNDLES = [
     '//apps/p4-tutorial/epc:onos-apps-p4-tutorial-epc',
     '//lib:mysql',
+    '//lib:io.lettuce',
+    #'//lib:io.projectreactor',
 ]
 
 onos_app (
