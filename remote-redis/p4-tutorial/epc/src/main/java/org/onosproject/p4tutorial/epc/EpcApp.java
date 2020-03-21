@@ -348,7 +348,7 @@ public class EpcApp {
         SGW sgw = new SGW();
         FT ft = new FT();
         FR fr = new FR();
-        KV kv = new KV();
+        public KV kv = new KV();
 
         int uePort = Constants.DEFAULT_SWITCH_UE_PORT;
 
