@@ -341,6 +341,7 @@ public class EpcApp {
      */
     private class ReactivePacketProcessor implements PacketProcessor {
 
+    	//@rinku: Below three maps can be global
         private ConcurrentHashMap<String, String> imsi_xres_mapping = new ConcurrentHashMap<String, String>();
         private ConcurrentHashMap<String, String> uekey_guti_map = new ConcurrentHashMap<String, String>(); // Key: UE_Key, Value: GUTI
         private ConcurrentHashMap<String, String[]> uekey_nas_keys_map = new ConcurrentHashMap<String, String[]>();		// Key = IMSI, Value = [0]: K_ASME, [1]: NAS Integrity key, NAS Encryption key
@@ -842,6 +843,8 @@ public class EpcApp {
                         DeviceId sgwswitchName = Constants.getSgwswitchName(dgw_dpId);
                         /*******************install uplink rules on SGW and PGW in this method********************/
                         String ip_sgw;
+
+                        //@rinku: SGW accesses a global map at contactPGW function
                         ip_sgw = sgw.contactPGW(appId,flowRuleService,sgwswitchName,sgw_dpId, pgw_dpId, tmpArray[1]); //tmpArray[1] => apn of UE
                         
                         response = new StringBuilder();
@@ -874,8 +877,10 @@ public class EpcApp {
                         /* UPLINK   => ipv4srcAddr = UE IP and ipv4dstAddr = Sink IP   */
                         fr.insertUplinkTunnelIngressRule(false, appId, flowRuleService, deviceId,UE_IPAddr, Constants.dstSinkIpAddr, sgw_teid, outPort);
 
+                        //@rinku: uekey_ueip_map is global
                          // key: tmpArray[2] => UE Key, Value: tmpArray2[0] => UE IP
-                        FT.put(Integer.parseInt(Constants.SEND_APN),dgw_dpId, "uekey_ueip_map", tmpArray[2], tmpArray2[0]); // key: tmpArray[2] => UE Key, Value: tmpArray2[0] => UE IP
+                        //FT.put(Integer.parseInt(Constants.SEND_APN),dgw_dpId, "uekey_ueip_map", tmpArray[2], tmpArray2[0]); // key: tmpArray[2] => UE Key, Value: tmpArray2[0] => UE IP
+                        kv.put("uekey_ueip_map"+tmpArray[2], tmpArray2[0]);
 
                         //MAP key = UE KEY,  MAP value = SGW_DPID + SEPARATOR + SGW_TEID
                         // @Offload design push sgw_teid to switch table so no need to update in map
@@ -948,15 +953,20 @@ public class EpcApp {
                         DeviceId SGWswitchName1 = Constants.getSgwswitchName(dgw_dpId1);
                             sgw.modifyBearerRequest(appId, flowRuleService, SGWswitchName1, tmpArray2[0], tmpArray2[0], Integer.parseInt(tmpArray2[1]), Integer.parseInt(tmpArray[1]), tmpArray[2]);
 
+                        //@rinku: uekey_ueip_map is global
                         //String ue_ip = uekey_ueip_map.get(tmpArray[2]); // tmpArray[2] => ue key
-                        String ue_ip = FT.get(send_ue_teid_dgw, "uekey_ueip_map", tmpArray[2]); // tmpArray[2] => ue key
+                        //String ue_ip = FT.get(send_ue_teid_dgw, "uekey_ueip_map", tmpArray[2]); // tmpArray[2] => ue key
+                        String ue_ip = kv.get("uekey_ueip_map"+tmpArray[2]); // tmpArray[2] => ue key
 
                         /**************************** Downlinkl flow rules on DGW (DGW -> RAN) ***************************/
                         fr.insertUplinkTunnelForwardRule(false,appId, flowRuleService, deviceId,Integer.parseInt(tmpArray[1]), uePort,0,true);
 
                         response = new StringBuilder();
+                        //@rinku: uekey_guti_map is global
                         //NOT USED LATER uekey_guti_map, so not considered in state calc
-                        uekey_guti_map.put(tmpArray[2], (Integer.parseInt(tmpArray[2])+1000)+"");
+                        //uekey_guti_map.put(tmpArray[2], (Integer.parseInt(tmpArray[2])+1000)+"");
+                        kv.put(uekey_guti_map+tmpArray[2], (Integer.parseInt(tmpArray[2])+1000)+"");
+
                         FT.put(Integer.parseInt(Constants.SEND_UE_TEID),send_ue_teid_dgw, "ue_state", tmpArray[2], "1");
 
                         response.append(Constants.ATTACH_ACCEPT).append(Constants.SEPARATOR).append(Integer.parseInt(tmpArray[2])+1000);	// Sending GUTI
@@ -1044,7 +1054,9 @@ public class EpcApp {
                         // key is sgw teid and value is ue key
                         FT.del(Integer.parseInt(Constants.DETACH_REQUEST),dw, "sgw_teid_uekey_map", tmpArray[3]); // key is sgw teid and value is ue key
 
-                        FT.del(Integer.parseInt(Constants.DETACH_REQUEST),dw,"uekey_ueip_map", tmpArray[4]);		// key is UE Key and value is UE IP
+                        //@rinku: uekey_ueip_map is global
+                        //FT.del(Integer.parseInt(Constants.DETACH_REQUEST),dw,"uekey_ueip_map", tmpArray[4]);		// key is UE Key and value is UE IP
+                        kv.del("uekey_ueip_map"+tmpArray[4]);		// key is UE Key and value is UE IP
 
                         //delete uplink rule
                         /******************************** delete uplink flow rule on Ingress DGW( DGW -> SGW)********************************/
@@ -1077,6 +1089,7 @@ public class EpcApp {
 
                         // dpids[0] ==> SGW DPID   & dpids[1]==> PGW DPID
                         DeviceId SGWswitchName2 = Constants.getSgwswitchName(dw);
+                        //@rinku: SGW deletes entry from sgw_pgw_teid_map which is global
                         boolean status = sgw.detachUEFromSGW(appId,flowRuleService,SGWswitchName2,Constants.getSgwDpid(dw), pgw_dpid, Integer.parseInt(tmpArray[3]), tmpArray[1]);
                         response = new StringBuilder();
                         

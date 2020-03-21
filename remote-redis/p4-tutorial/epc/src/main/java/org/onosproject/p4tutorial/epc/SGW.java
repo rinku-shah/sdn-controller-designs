@@ -217,6 +217,7 @@ public class SGW  {
 			if(Constants.MYDEBUG) {
 					log.warn(" in detachUEFromSGW del");
 			}
+			//@rinku: SGW_PGW_TEID_MAP is global
 			FT.del(Integer.parseInt(Constants.DETACH_REQUEST),dgwId, "SGW_PGW_TEID_MAP", String.valueOf(sgw_teid));   // TODO
 
 			//delete uplink rule
