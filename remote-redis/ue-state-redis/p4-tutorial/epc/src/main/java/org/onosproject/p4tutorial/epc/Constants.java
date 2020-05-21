@@ -60,9 +60,9 @@ public class Constants {
 	final static String ROOT_IP ="192.168.100.100"; //Inter-controller commn... Root's IP for external commn
 	//UE_MAC
 	final static String UE_MAC_1 = "00:16:3e:c6:a2:aa"; // MAC Address of UE/eNodeB Node  *
-	final static String UE_MAC_2 = "00:16:3e:e7:56:4b"; // MAC Address of UE/eNodeB Node  *
-	final static String UE_MAC_3 = "00:16:3e:1c:8f:e1"; // MAC Address of UE/eNodeB Node  *
-	final static String UE_MAC_4 = "00:16:3e:e4:62:8a"; // MAC Address of UE/eNodeB Node  *
+	final static String UE_MAC_2 = "00:16:3e:98:22:33"; // MAC Address of UE/eNodeB Node  *
+	final static String UE_MAC_3 = "00:16:3e:5f:32:9a"; // MAC Address of UE/eNodeB Node  *
+	final static String UE_MAC_4 = "00:16:3e:73:d0:6d"; // MAC Address of UE/eNodeB Node  *
 	final static String UE_MAC_5 = "00:16:3f:7e:8e:b3"; // MAC Address of UE/eNodeB Node  *
 	final static String UE_MAC_6 = "00:16:3e:c8:9a:44"; // MAC Address of UE/eNodeB Node  *
 	// IP address of various component interfaces										*
