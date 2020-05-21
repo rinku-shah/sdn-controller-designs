@@ -1,4 +1,14 @@
-1. Traditional EPC
+
+Prepare for libraries
+1. Open ~/onos/lib/deps.json
+2. add to artifacts 
+  "artifacts": {
+    "redis":"mvn:redis.clients:jedis:2.9.0",
+    "mysql":"mvn:mysql:mysql-connector-java:5.1.35",
+    "io.lettuce":"mvn:io.lettuce:lettuce-core:5.0.4.RELEASE",
+    ...
+-------
+Horizontal EPC
     This is a 1 chain experiment with DGW, SGW and PGW connected to root ONOS controller
     RUN steps:
     1. on the base machine, create all bridges using the ~/bridge_init.sh script
