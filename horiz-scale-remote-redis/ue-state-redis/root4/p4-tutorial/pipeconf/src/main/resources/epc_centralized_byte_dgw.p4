@@ -40,7 +40,7 @@ control c_ingress(inout headers hdr,
 
     // Table counter used to count packets and bytes matched by each entry of
     // t_l2_fwd table.
-    direct_counter(CounterType.packets_and_bytes) l3_fwd_counter;
+    direct_counter(CounterType.packets_and_bytes) t_l3_fwd_counter;
 
     table t_l3_fwd {
         key = {
@@ -58,7 +58,7 @@ control c_ingress(inout headers hdr,
         }
         size = 1024;
         default_action =  NoAction();
-        counters = l3_fwd_counter;
+        counters = t_l3_fwd_counter;
     }
 
 

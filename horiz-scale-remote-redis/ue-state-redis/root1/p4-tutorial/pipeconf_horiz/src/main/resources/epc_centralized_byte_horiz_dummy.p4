@@ -40,7 +40,7 @@ control c_ingress(inout headers hdr,
 
     // Table counter used to count packets and bytes matched by each entry of
     // t_l2_fwd table.
-    direct_counter(CounterType.packets_and_bytes) t_l3_fwd_counter;
+    direct_counter(CounterType.packets_and_bytes) l3_fwd_counter;
 
     table t_l3_fwd {
         key = {
@@ -58,12 +58,12 @@ control c_ingress(inout headers hdr,
         }
         size = 1024;
         default_action =  NoAction();
-        counters = t_l3_fwd_counter;
+        counters = l3_fwd_counter;
     }
 
 
    // ***************** Uplink Tunnel(DGW->PGW) Setup *******************************
-    action populate_ip_op_tun_s1_uplink(bit<32> op_tunnel_s1,bit<9> egress_port_s1){
+   /* action populate_ip_op_tun_s1_uplink(bit<32> op_tunnel_s1,bit<9> egress_port_s1){
       
         // gtp based forwarding
         hdr.gtpu_ipv4.setValid();
@@ -102,10 +102,10 @@ control c_ingress(inout headers hdr,
 
         standard_metadata.egress_spec = egress_port_s1;
         hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
-    }
+    }*/
 
 
-   table ip_op_tun_s1_uplink{
+   /*table ip_op_tun_s1_uplink{
        key={
            // need to match on dstaddr to form ingress tunnel
            hdr.ipv4.srcAddr : exact;
@@ -117,12 +117,12 @@ control c_ingress(inout headers hdr,
        }
        size = 4096;
        default_action = NoAction();
-   }
+   }*/
 
 
    // ***************** Downlink Tunnel(PGW->DGW) Setup *******************************
 
-    action populate_tun_egress_s3_uplink(bit<9> egress_port_s3){
+    /*action populate_tun_egress_s3_uplink(bit<9> egress_port_s3){
         standard_metadata.egress_spec = egress_port_s3;
 
         hdr.gtpu_ipv4 = hdr.ipv4;
@@ -168,10 +168,10 @@ control c_ingress(inout headers hdr,
         hdr.gtpu_udp.setInvalid();
 
         hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
-    }
+    }*/
 
     // tunnel to egress port map for s3
-    table tun_egress_s3_uplink{
+    /*table tun_egress_s3_uplink{
         key={
             // match on gtp teid field and set the corressponding egress port
             hdr.gtpu.teid : exact;
@@ -183,7 +183,7 @@ control c_ingress(inout headers hdr,
         }
         size = 1024;
         default_action = NoAction();
-    }
+    }*/
 
 
     apply {
@@ -209,15 +209,15 @@ control c_ingress(inout headers hdr,
             //  1. set the outgoing tunnel ID for incoming tunnel ID
             //  2. Set the egress port after looking up incoming tunnel ID
             //  Note : tunnel ID is gtp vid
-            if (hdr.ipv4.isValid() && !hdr.gtpu.isValid()) {
-                    // Process only non-tunneled IPv4 packets.
-                        ip_op_tun_s1_uplink.apply();
-                        return;
-            }
-            if (hdr.gtpu.isValid()) {
-                tun_egress_s3_uplink.apply();
-                return;
-            }
+            //if (hdr.ipv4.isValid() && !hdr.gtpu.isValid()) {
+                   // Process only non-tunneled IPv4 packets.
+              //          ip_op_tun_s1_uplink.apply();
+              //          return;
+           // }
+           // if (hdr.gtpu.isValid()) {
+           //     tun_egress_s3_uplink.apply();
+           //     return;
+           // }
          }
              // Update port counters at index = ingress or egress port.
              if (standard_metadata.egress_spec < MAX_PORTS) {

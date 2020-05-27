@@ -205,7 +205,6 @@ public final class PipelineInterpreterImpl
     @Override
     public PiAction mapTreatment(TrafficTreatment treatment, PiTableId piTableId)
             throws PiInterpreterException {
-
         if (piTableId != TABLE_L3_FWD_ID) {
             throw new PiInterpreterException(
                     "Can map treatments only for 't_l3_fwd' table");

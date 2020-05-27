@@ -1051,7 +1051,7 @@
       "is_direct" : false
     },
     {
-      "name" : "c_ingress.l3_fwd_counter",
+      "name" : "c_ingress.t_l3_fwd_counter",
       "id" : 2,
       "is_direct" : true,
       "binding" : "c_ingress.t_l3_fwd"

@@ -115,7 +115,7 @@ public final class PipelineInterpreterImpl
 
     private static final PiTableId TABLE_L3_FWD_ID =
             PiTableId.of(C_INGRESS + DOT + T_L3_FWD);
-    private static final PiTableId TABLE_S1_UPLINK =
+    /*private static final PiTableId TABLE_S1_UPLINK =
             PiTableId.of(C_INGRESS + DOT + T_S1_UPLINK);
     private static final PiTableId TABLE_S2_UPLINK =
             PiTableId.of(C_INGRESS + DOT + T_S2_UPLINK);
@@ -128,7 +128,7 @@ public final class PipelineInterpreterImpl
             PiTableId.of(C_INGRESS + DOT + T_S2_DOWNLINK);
     private static final PiTableId TABLE_S3_DOWNLINK =
             PiTableId.of(C_INGRESS + DOT + T_S3_DOWNLINK);
-
+*/
 
     private static final PiActionId ACT_ID_NOP =
             PiActionId.of("NoAction");
@@ -136,7 +136,7 @@ public final class PipelineInterpreterImpl
             PiActionId.of(C_INGRESS + DOT + "send_to_cpu");
     private static final PiActionId ACT_ID_IPV4_FORWARD =
             PiActionId.of(C_INGRESS + DOT + "ipv4_forward");
-    private static final PiActionId ACT_ID_POPULATE_S1_UPLINK =
+/*    private static final PiActionId ACT_ID_POPULATE_S1_UPLINK =
             PiActionId.of(C_INGRESS + DOT + "populate_ip_op_tun_s1_uplink"); 
     private static final PiActionId ACT_ID_POPULATE_S2_UPLINK =
             PiActionId.of(C_INGRESS + DOT + "populate_ip_op_tun_s2_uplink");
@@ -149,7 +149,7 @@ public final class PipelineInterpreterImpl
             PiActionId.of(C_INGRESS + DOT + "populate_ip_op_tun_s2_downlink"); 
     private static final PiActionId ACT_ID_POPULATE_S3_DOWNLINK =
             PiActionId.of(C_INGRESS + DOT + "populate_ip_op_tun_s3_downlink"); 
-                     
+  */                   
 
     private static final PiActionParamId ACT_PARAM_ID_PORT =
             PiActionParamId.of("port");
@@ -157,7 +157,7 @@ public final class PipelineInterpreterImpl
             PiActionParamId.of("dstAddr");
     private static final PiActionParamId ACT_PARAM_ID_S1_EGRESS_PORT =
             PiActionParamId.of("egress_port_s1"); 
-    private static final PiActionParamId ACT_PARAM_ID_S2_EGRESS_PORT =
+/*    private static final PiActionParamId ACT_PARAM_ID_S2_EGRESS_PORT =
             PiActionParamId.of("egress_port_s2"); 
     private static final PiActionParamId ACT_PARAM_ID_S3_EGRESS_PORT =
             PiActionParamId.of("egress_port_s3");  
@@ -167,7 +167,7 @@ public final class PipelineInterpreterImpl
             PiActionParamId.of("op_tunnel_s2");  
     private static final PiActionParamId ACT_PARAM_ID_S3_OUT_TUNNEL =
             PiActionParamId.of("op_tunnel_s3");              
-
+*/
     private static final BiMap<Integer, PiTableId> TABLE_MAP =
             new ImmutableBiMap.Builder<Integer, PiTableId>()
                     .put(0, TABLE_L3_FWD_ID)
@@ -205,7 +205,8 @@ public final class PipelineInterpreterImpl
     @Override
     public PiAction mapTreatment(TrafficTreatment treatment, PiTableId piTableId)
             throws PiInterpreterException {
-        if (piTableId != TABLE_L3_FWD_ID) {
+
+       if (piTableId != TABLE_L3_FWD_ID) {
             throw new PiInterpreterException(
                     "Can map treatments only for 't_l3_fwd' table");
         }

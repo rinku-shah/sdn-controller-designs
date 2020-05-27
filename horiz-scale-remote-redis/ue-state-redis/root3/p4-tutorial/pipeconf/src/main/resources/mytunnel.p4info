@@ -46,7 +46,7 @@ tables {
   action_refs {
     id: 16800567
   }
-  direct_resource_ids: 302005634
+  direct_resource_ids: 302038904
   size: 1024
 }
 tables {
@@ -181,9 +181,9 @@ counters {
 }
 direct_counters {
   preamble {
-    id: 302005634
-    name: "c_ingress.l3_fwd_counter"
-    alias: "l3_fwd_counter"
+    id: 302038904
+    name: "c_ingress.t_l3_fwd_counter"
+    alias: "t_l3_fwd_counter"
   }
   spec {
     unit: BOTH

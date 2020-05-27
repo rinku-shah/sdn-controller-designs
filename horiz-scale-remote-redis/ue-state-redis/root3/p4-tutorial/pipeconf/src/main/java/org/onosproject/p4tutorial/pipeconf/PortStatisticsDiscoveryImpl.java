@@ -50,7 +50,7 @@ import static org.onosproject.net.pi.model.PiCounterType.INDIRECT;
 public final class PortStatisticsDiscoveryImpl extends AbstractHandlerBehaviour implements PortStatisticsDiscovery {
 
     private static final Logger log = LoggerFactory.getLogger(PortStatisticsDiscoveryImpl.class);
-
+	//@rinku
     private static final PiCounterId INGRESS_COUNTER_ID = PiCounterId.of("c_ingress.rx_port_counter");
     private static final PiCounterId EGRESS_COUNTER_ID = PiCounterId.of("c_ingress.tx_port_counter");
 
@@ -90,6 +90,7 @@ public final class PortStatisticsDiscoveryImpl extends AbstractHandlerBehaviour 
         Set<PiCounterCellId> counterCellIds = Sets.newHashSet();
         portStatBuilders.keySet().forEach(p -> {
             // Counter cell/index = port number.
+	    //@rinku
             counterCellIds.add(PiCounterCellId.ofIndirect(INGRESS_COUNTER_ID, p));
             counterCellIds.add(PiCounterCellId.ofIndirect(EGRESS_COUNTER_ID, p));
         });
@@ -115,6 +116,7 @@ public final class PortStatisticsDiscoveryImpl extends AbstractHandlerBehaviour 
                 return;
             }
             DefaultPortStatistics.Builder statsBuilder = portStatBuilders.get(counterData.cellId().index());
+		//@rinku
             if (counterData.cellId().counterId().equals(INGRESS_COUNTER_ID)) {
                 statsBuilder.setPacketsReceived(counterData.packets());
                 statsBuilder.setBytesReceived(counterData.bytes());

@@ -99,7 +99,7 @@ public final class PortStatisticsDiscoveryImpl extends AbstractHandlerBehaviour 
         try {
             counterEntryResponse = client.readCounterCells(counterCellIds, pipeconf).get();
         } catch (InterruptedException | ExecutionException e) {
-            log.warn("Exception while reading port counters from {}: {}", deviceId, e.toString());
+	    log.warn("Exception while reading port counters from {}: {}", deviceId, e.toString());
             log.debug("", e);
             return Collections.emptyList();
         }
