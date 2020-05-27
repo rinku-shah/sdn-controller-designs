@@ -46,4 +46,10 @@ Horizontal EPC
     8. To start the ran Load Generator go to ran container terminal 
        a. cd ran_code/clone_bitwise_lg
        b. make
-       c. sudo ./ran 1 1 0k // this will run ran for 1 thread for 1 minute 
+       c. sudo ./ran 1 1 0k // this will run ran for 1 thread for 1 minute
+       
+My internship topic was about capacity-aware load balancing. The seed idea belonged to T. Sridhar and Raja Kommula.  
+
+The problem addressed during my internship was --- Performance of the VMs  changes dynamically due to the colocated noisy neighbors that share same cache and I/O resources. The load balancer evenly distributes the load amongst the VM instances of an application. Since the capacity of the VMs is not equal, the even load distribution may lead to SLA violations. Our idea was to predict the VM capacities with the assumption that the VMs and the load balancer are third-party appliances, i.e., predict the VM capacities without using any administrative data  or installing additional software. 
+
+During my internship tenure I was able to design an algorithm for capacity-aware load balancing. I had written a simple simulator for the same but could not run the code on real systems since the infrastructure was not available. 
