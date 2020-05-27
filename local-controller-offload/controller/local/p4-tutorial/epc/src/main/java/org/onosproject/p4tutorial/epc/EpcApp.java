@@ -1310,7 +1310,7 @@ public class EpcApp {
 				        
                         sgw.releaseAccessBearersRequest(appId,flowRuleService,deviceId, dw_cr, Integer.parseInt(tmpArray[3]), tmpArray[1]);
 
-                        // FT.put(Integer.parseInt(Constants.UE_CONTEXT_RELEASE_REQUEST),dw_cr, "ue_state", tmpArray[4], "0");
+                        FT.put(Integer.parseInt(Constants.UE_CONTEXT_RELEASE_REQUEST),dw_cr, "ue_state", tmpArray[4], "0");
                         // @offload design : populate the uekey_uestate map on SGW with 0 instead of map.
                         fr.populate_uekey_uestate_map(appId,flowRuleService,deviceId,Integer.parseInt(tmpArray[4]),0);
 
@@ -1554,7 +1554,7 @@ public class EpcApp {
 
 
                         // @offload design : populate the uekey_uestate table on SGW with 1 instead of map.
-                        // FT.put(Integer.parseInt(Constants.INITIAL_CONTEXT_SETUP_RESPONSE),dw_c_resp, "ue_state", tmpArray[2], "1");
+                        FT.put(Integer.parseInt(Constants.INITIAL_CONTEXT_SETUP_RESPONSE),dw_c_resp, "ue_state", tmpArray[2], "1");
 
                         fr.populate_uekey_uestate_map(appId,flowRuleService,deviceId,Integer.parseInt(tmpArray[2]),1);
 

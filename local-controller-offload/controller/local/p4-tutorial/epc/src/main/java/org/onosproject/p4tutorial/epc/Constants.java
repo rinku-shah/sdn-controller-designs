@@ -25,7 +25,7 @@ public class Constants {
 	
 
 
-	static boolean offload_with_clone = true;
+	static boolean offload_with_clone = false;
 
 	static final int FLOW_RULE_PRIORITY = 100;
 

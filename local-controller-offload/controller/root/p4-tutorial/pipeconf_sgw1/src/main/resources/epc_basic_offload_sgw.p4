@@ -192,7 +192,7 @@ control c_ingress(inout headers hdr,
         // deparsed on the wire (see c_deparser).
         hdr.packet_in.setValid();
         hdr.packet_in.ingress_port = standard_metadata.ingress_port;
-	hdr.packet_in.reason_code = 50;
+		hdr.packet_in.reason_code = 50;
     }
 
     table service_req_uekey_sgwteid_map{
@@ -232,7 +232,7 @@ control c_ingress(inout headers hdr,
         // deparsed on the wire (see c_deparser).
         hdr.packet_in.setValid();
         hdr.packet_in.ingress_port = standard_metadata.ingress_port;
-	hdr.packet_in.reason_code = 50;
+		hdr.packet_in.reason_code = 50;
     }
 
     table ctxt_setup_uekey_sgwteid_map{
@@ -279,7 +279,8 @@ control c_ingress(inout headers hdr,
                             // forward the original packet to lcoal onos 
 
                     // we use I2E_CLONE_SESSION_ID = 500 and set the out port as 1 in egress pipeline to reply back to RAN
-                    clone3(CloneType.I2E, I2E_CLONE_SESSION_ID, standard_metadata);
+                    //@rinku:co-offload
+                    //clone3(CloneType.I2E, I2E_CLONE_SESSION_ID, standard_metadata);
 
                     // handle context release message 
                     if(hdr.data.epc_traffic_code == 14){
@@ -291,7 +292,7 @@ control c_ingress(inout headers hdr,
                         // deparsed on the wire (see c_deparser).
                         hdr.packet_in.setValid();
                         hdr.packet_in.ingress_port = standard_metadata.ingress_port;
-			hdr.packet_in.reason_code = 50;
+						            hdr.packet_in.reason_code = 50;
                         // return;
                     }
 
