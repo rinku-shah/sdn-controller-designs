@@ -239,14 +239,14 @@ control c_ingress(inout headers hdr,
                             else if(hdr.ipv4.protocol == PROTO_UDP){
                                     standard_metadata.egress_spec = 2;
                                     hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
-                                    // return;
+                                    //return;
                             }
                    }
                     // process reply from local onos at DGW 
                     else if(standard_metadata.ingress_port==2){
                                 standard_metadata.egress_spec = 1;
                                 hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
-                                // return;
+                                //return;
                     }
                 // }
           }

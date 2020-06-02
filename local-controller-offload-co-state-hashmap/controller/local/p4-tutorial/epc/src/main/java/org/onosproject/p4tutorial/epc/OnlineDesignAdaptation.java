@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import org.slf4j.Logger;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /*import net.floodlightcontroller.core.FloodlightContext;
 import net.floodlightcontroller.core.IFloodlightProviderService;
@@ -87,6 +89,7 @@ public class OnlineDesignAdaptation {
 }
 
 class OnlineThread implements Runnable {
+	private static final Logger log = getLogger(EpcApp.class);
 	//private static IOFSwitch sw1,sw2,sw3,sw4,sw5,sw6;
 	public InterControllerClient clt1, clt2, clt3, clt4, clt5, clt6; //clients for SGW conn
 	//public InterControllerClient dclt1, dclt2, dclt3, dclt4, dclt5, dclt6; //clients for DGW conn
@@ -134,7 +137,7 @@ class OnlineThread implements Runnable {
 		String receiverIP = "";
 		//String sgw_dpId = Constants.getSgwDpid(dgw_dpId);
 		//DeviceId sgwswitchName = Constants.getSgwswitchName(dgw_dpId);
-		receiverIP = getSgwIp(dgw_dpId);
+		receiverIP = Constants.getSgwIp(dgw_dpId);
 
 		try {
 			sendPacketToController(receiverIP, msg);

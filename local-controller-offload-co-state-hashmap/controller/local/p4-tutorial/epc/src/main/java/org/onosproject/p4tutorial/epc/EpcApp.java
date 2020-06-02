@@ -1,6 +1,6 @@
 /*
  * Copyright 2017-present Open Networking Foundation
- *
+ **
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -181,19 +181,19 @@ public class EpcApp {
      */
     private void requestIntercepts() {
         TrafficSelector.Builder selector = DefaultTrafficSelector.builder();
-        // packetService.requestPackets(selector.build(), PacketPriority.REACTIVE, appId);
+        //packetService.requestPackets(selector.build(), PacketPriority.REACTIVE, appId);
 
         /* PacketPriority.REACTIVE = packets are only sent to the
         controller if they fail to match any of the rules installed in the switch.  */
         /* PacketPriority.CONTROL = High priority for control traffic this will result in all 
         traffic matching the selector to be sent to controller */
-        // int epc_code = 50;
-        // int PORTMASK = 0xff;
-        // PiMatchFieldId epcCode = PiMatchFieldId.of("hdr.data.epc_traffic_code");
-        // PiCriterion match = PiCriterion.builder()
+        //int epc_code = 50;
+        //int PORTMASK = 0xff;
+        //PiMatchFieldId epcCode = PiMatchFieldId.of("hdr.data.epc_traffic_code");
+        //PiCriterion match = PiCriterion.builder()
         //         .matchTernary(epcCode, epc_code,PORTMASK)
         //         .build();
-        // packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
+        //packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
 
         // epc_code = 51;
         // match = PiCriterion.builder()
@@ -203,13 +203,13 @@ public class EpcApp {
 
         // @offload design : since the root onos has already requested for packets we will not request again and the SGW will forward to local onos the service request and ctxt release request.
 
-        // int epc_code = 12;
-        // int PORTMASK = 0xff;
-        // PiMatchFieldId epcCode = PiMatchFieldId.of("hdr.data.epc_traffic_code");
-        // PiCriterion match = PiCriterion.builder()
-        //         .matchTernary(epcCode, epc_code,PORTMASK)
-        //         .build();
-        // packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
+         //int epc_code = 12;
+         //int PORTMASK = 0xff;
+         //PiMatchFieldId epcCode = PiMatchFieldId.of("hdr.data.epc_traffic_code");
+         //PiCriterion match = PiCriterion.builder()
+         //        .matchTernary(epcCode, epc_code,PORTMASK)
+         //        .build();
+         //packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
 
         // epc_code = 1;
         // match = PiCriterion.builder()
@@ -247,24 +247,24 @@ public class EpcApp {
         //         .build();
         // packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
 
-        // epc_code = 14;
-        // match = PiCriterion.builder()
-        //         .matchTernary(epcCode, epc_code,PORTMASK)
-        //         .build();
-        // packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
+        /* epc_code = 14;
+         match = PiCriterion.builder()
+                .matchTernary(epcCode, epc_code,PORTMASK)
+                .build();
+         packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
 
-        // epc_code = 17;
-        // match = PiCriterion.builder()
-        //         .matchTernary(epcCode, epc_code,PORTMASK)
-        //         .build();
-        // packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
+         epc_code = 17;
+         match = PiCriterion.builder()
+                 .matchTernary(epcCode, epc_code,PORTMASK)
+                 .build();
+         packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
 
-        // epc_code = 19;
-        // match = PiCriterion.builder()
-        //         .matchTernary(epcCode, epc_code,PORTMASK)
-        //         .build();
-        // packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
-        
+         epc_code = 19;
+         match = PiCriterion.builder()
+                 .matchTernary(epcCode, epc_code,PORTMASK)
+                 .build();
+         packetService.requestPackets(selector.matchPi(match).build(), PacketPriority.REACTIVE, appId);
+        */
         
     }
     /**
@@ -434,7 +434,7 @@ public class EpcApp {
 
             byte code = ByteBuffer.wrap(b1).get();
             int type = code;
-			String sep1 = new String(b2, StandardCharsets.UTF_8); //6 byte
+            String sep1 = new String(b2, StandardCharsets.UTF_8); //6 byte
                 
 
             ByteBuffer bb = ByteBuffer.wrap(((Data)final_payload).getData());
@@ -484,10 +484,13 @@ public class EpcApp {
                 int step = 0;
 
                 if(Constants.DEBUG) {
-                    log.warn("tmpArray[0] = {}", tmpArray[0]);
+		     log.warn("code = {}", code);
+                    //log.warn("tmpArray[0] = {}", tmpArray[0]);
+		    //log.warn("tmpArray[1] = {}", tmpArray[1]);
                 }
                 // switch(tmpArray[0]){
                 switch(Integer.toString(type)){
+		//switch(String.valueOf(type)){
                     
                     case Constants.REQUEST_STARTING_IP:
                     // @offload will only handle service request and context release messgaes
@@ -1339,8 +1342,8 @@ public class EpcApp {
                                         byte [] b175 =Arrays.copyOfRange(p, 17, 21); //ksi asme
                                         byte [] b176 =Arrays.copyOfRange(p, 21, 27); //sep
                                         byte [] b177 =Arrays.copyOfRange(p, 27, 31); //ue ip
-                                        byte [] b178 =Arrays.copyOfRange(p, 31, 37); //sep
-                                        byte [] b179 =Arrays.copyOfRange(p, 37, 41); //sgw teid
+                                        //byte [] b178 =Arrays.copyOfRange(p, 31, 37); //sep
+                                        //byte [] b179 =Arrays.copyOfRange(p, 37, 41); //sgw teid
                                         
                                         int ue_num17 = ByteBuffer.wrap(b173).getInt();
                                         tmpArray[1] = Integer.toString(ue_num17);
@@ -1356,10 +1359,10 @@ public class EpcApp {
                                         String ue_ipaddr2 = IPv4.fromIPv4Address(ipv4add2);
                                         tmpArray[3]=ue_ipaddr2;
 
-                                        String sep178 = new String(b178, StandardCharsets.UTF_8); //6 byte
+                                        //String sep178 = new String(b178, StandardCharsets.UTF_8); //6 byte
 
-                                        int sgw_teid17 = ByteBuffer.wrap(b179).getInt();
-                                        tmpArray[4] = Integer.toString(sgw_teid17);
+                                        //int sgw_teid17 = ByteBuffer.wrap(b179).getInt();
+                                        //tmpArray[4] = Integer.toString(sgw_teid17);
 
 
 
@@ -1370,8 +1373,8 @@ public class EpcApp {
                                             log.warn("KSI_ASME = {}",tmpArray[2]);
                                             log.warn("sep2 = {}" , sep176);
                                             log.warn("UE_IP = {}" , ue_ipaddr2);
-                                            log.warn("sep3 = {}" , sep178);
-                                            log.warn("SGW_TEID = {}" , tmpArray[4]);
+                                            //log.warn("sep3 = {}" , sep178);
+                                            //log.warn("SGW_TEID = {}" , tmpArray[4]);
 
                                         }
 
@@ -1401,7 +1404,7 @@ public class EpcApp {
 
                         String sgw_dpid_sgw_teid = FT.get(dw_ue_ser,"uekey_sgw_teid_map",tmpArray[1]); // MAP key = UE KEY,  MAP value = SGW_DPID + SEPARATOR + SGW_TEID
                         tmpArray2 = sgw_dpid_sgw_teid.split(Constants.SEPARATOR);
-                        sgw_teid = Integer.parseInt(tmpArray2[1]);
+                        sgw_teid = Integer.parseInt(tmpArray2[0]);
 
                         //install uplink rule on default switch
                         DeviceId DGWswitchName4 = Constants.getDgwswitchName(dw_ue_ser);
@@ -1463,8 +1466,8 @@ public class EpcApp {
                                     byte [] b195 =Arrays.copyOfRange(p, 17, 21); //ue key
                                     byte [] b196 =Arrays.copyOfRange(p, 21, 27); //sep
                                     byte [] b197 =Arrays.copyOfRange(p, 27, 31); //ue ip
-                                    byte [] b198 =Arrays.copyOfRange(p, 31, 37); //sep
-                                    byte [] b199 =Arrays.copyOfRange(p, 37, 41); //sgw teid
+                                    //byte [] b198 =Arrays.copyOfRange(p, 31, 37); //sep
+                                    //byte [] b199 =Arrays.copyOfRange(p, 37, 41); //sgw teid
                                     
                                     int ue_teid19 = ByteBuffer.wrap(b193).getInt();
                                     tmpArray[1]=Integer.toString(ue_teid19);
@@ -1480,10 +1483,10 @@ public class EpcApp {
                                     String ue_ipaddr3 = IPv4.fromIPv4Address(ipv4add3);
                                     tmpArray[3]=ue_ipaddr3;
 
-                                    String sep198 = new String(b198, StandardCharsets.UTF_8); //6 byte
+                                    //String sep198 = new String(b198, StandardCharsets.UTF_8); //6 byte
 
-                                    int sgw_teid171 = ByteBuffer.wrap(b199).getInt();
-                                    tmpArray[4] = Integer.toString(sgw_teid171);
+                                    //int sgw_teid171 = ByteBuffer.wrap(b199).getInt();
+                                    //tmpArray[4] = Integer.toString(sgw_teid171);
 
                                     if(Constants.BITWISE_DEBUG){
                                         log.info("INITIAL_CONTEXT_SETUP_RESPONSE");
@@ -1492,8 +1495,8 @@ public class EpcApp {
                                         log.warn("key = {}" ,tmpArray[2]);
                                         log.warn("sep2 = {}" , sep193);
                                         log.warn("UE_IP = {}" , tmpArray[3]);
-                                        log.warn("sep3 = {}" , sep198);
-                                        log.warn("SGW_TEID = {}" , tmpArray[4]);
+                                        //log.warn("sep3 = {}" , sep198);
+                                        //log.warn("SGW_TEID = {}" , tmpArray[4]);
                                     }
 
                         String dw_c_resp = Constants.getSgwDpidFromIp(DGW_IPAddr);
@@ -1519,7 +1522,7 @@ public class EpcApp {
                         tmpArray2 = tmp.split(Constants.SEPARATOR);
                         //tmpArray2[0] => sgw_dpId  and tmpArray2[1] => sgw_teID
                         //String sgw_dpId10 = Constants.getSgwDpid(dw_c_resp);
-                        sgw_teid = Integer.parseInt(tmpArray2[1]);
+                        sgw_teid = Integer.parseInt(tmpArray2[0]);
 
 
 //                      modifyBearerRequest(ApplicationId appId,FlowRuleService flowRuleService,DeviceId switchId,String sgw, String sgw_dpId, int sgw_teId, int ue_teId, String key){

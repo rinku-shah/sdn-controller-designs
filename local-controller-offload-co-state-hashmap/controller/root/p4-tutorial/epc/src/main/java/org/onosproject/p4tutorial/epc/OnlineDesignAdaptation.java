@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import org.slf4j.Logger;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /*import net.floodlightcontroller.core.FloodlightContext;
 import net.floodlightcontroller.core.IFloodlightProviderService;
@@ -76,18 +78,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;*/
 
 public class OnlineDesignAdaptation {
-	    String controllerIdStr;
-	    		
+	    	OnlineThread t;	
 		public OnlineDesignAdaptation(){
-			OnlineThread t;
+			//OnlineThread t;
 			t = new OnlineThread();
 			t.start();
 		}
+
+		public void sendPacketRemote(String dgw_dpId, String msg){ //Sending packet to specific controller
+			t.sendPacket(dgw_dpId, msg);
+		}
+         
 		
 }
 
 class OnlineThread implements Runnable {
 	//private static IOFSwitch sw1,sw2,sw3,sw4,sw5,sw6;
+	private static final Logger log = getLogger(EpcApp.class);
 	public InterControllerClient clt1, clt2, clt3, clt4, clt5, clt6; //clients for SGW conn
 	//public InterControllerClient dclt1, dclt2, dclt3, dclt4, dclt5, dclt6; //clients for DGW conn
 	public InterControllerServer server;
@@ -134,7 +141,7 @@ class OnlineThread implements Runnable {
 		String receiverIP = "";
 		//String sgw_dpId = Constants.getSgwDpid(dgw_dpId);
 		//DeviceId sgwswitchName = Constants.getSgwswitchName(dgw_dpId);
-		receiverIP = getSgwIp(dgw_dpId);
+		receiverIP = Constants.getSgwIp(dgw_dpId);
 
 		try {
 			sendPacketToController(receiverIP, msg);

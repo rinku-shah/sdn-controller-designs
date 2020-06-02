@@ -600,94 +600,7 @@
   "header_union_types" : [],
   "header_unions" : [],
   "header_union_stacks" : [],
-  "field_lists" : [
-    {
-      "id" : 1,
-      "name" : "fl",
-      "elements" : [
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "ingress_port"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "egress_spec"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "egress_port"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "clone_spec"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "instance_type"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "drop"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "recirculate_port"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "packet_length"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "enq_timestamp"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "enq_qdepth"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "deq_timedelta"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "deq_qdepth"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "ingress_global_timestamp"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "egress_global_timestamp"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "lf_field_list"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "mcast_grp"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "resubmit_flag"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "egress_rid"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "checksum_error"]
-        },
-        {
-          "type" : "field",
-          "value" : ["standard_metadata", "recirculate_flag"]
-        }
-      ]
-    }
-  ],
+  "field_lists" : [],
   "errors" : [
     ["NoError", 1],
     ["PacketTooShort", 2],
@@ -1570,20 +1483,8 @@
       "primitives" : []
     },
     {
-      "name" : "NoAction",
-      "id" : 5,
-      "runtime_data" : [],
-      "primitives" : []
-    },
-    {
-      "name" : "NoAction",
-      "id" : 6,
-      "runtime_data" : [],
-      "primitives" : []
-    },
-    {
       "name" : "c_ingress.ipv4_forward",
-      "id" : 7,
+      "id" : 5,
       "runtime_data" : [
         {
           "name" : "port",
@@ -1614,7 +1515,7 @@
     },
     {
       "name" : "c_ingress.send_to_cpu",
-      "id" : 8,
+      "id" : 6,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1693,7 +1594,7 @@
     },
     {
       "name" : "c_ingress._drop",
-      "id" : 9,
+      "id" : 7,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1710,7 +1611,7 @@
     },
     {
       "name" : "c_ingress.populate_ip_op_tun_s2_uplink",
-      "id" : 10,
+      "id" : 8,
       "runtime_data" : [
         {
           "name" : "op_tunnel_s2",
@@ -1939,7 +1840,7 @@
     },
     {
       "name" : "c_ingress.populate_ip_op_tun_s2_downlink",
-      "id" : 11,
+      "id" : 9,
       "runtime_data" : [
         {
           "name" : "op_tunnel_s2",
@@ -2168,7 +2069,7 @@
     },
     {
       "name" : "c_ingress.populate_uekey_uestate_map",
-      "id" : 12,
+      "id" : 10,
       "runtime_data" : [
         {
           "name" : "uestate",
@@ -2199,7 +2100,7 @@
     },
     {
       "name" : "c_ingress.populate_uekey_guti_map",
-      "id" : 13,
+      "id" : 11,
       "runtime_data" : [
         {
           "name" : "guti",
@@ -2229,502 +2130,8 @@
       ]
     },
     {
-      "name" : "c_ingress.populate_service_req_uekey_sgwteid_map",
-      "id" : 14,
-      "runtime_data" : [
-        {
-          "name" : "sgwteid",
-          "bitwidth" : 32
-        }
-      ],
-      "primitives" : [
-        {
-          "op" : "add_header",
-          "parameters" : [
-            {
-              "type" : "header",
-              "value" : "offload_ue_service_req"
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 175,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_ue_service_req.setValid()"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_ue_service_req", "ue_key"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ue_service_req", "ue_key"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 177,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_ue_service_req.ue_key = hdr.ue_service_req.ue_key"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_ue_service_req", "sep1"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ue_service_req", "sep1"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 178,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_ue_service_req.sep1 = hdr.ue_service_req.sep1"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_ue_service_req", "ksi_asme"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ue_service_req", "ksi_asme"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 179,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_ue_service_req.ksi_asme = hdr.ue_service_req.ksi_asme"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_ue_service_req", "sep2"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ue_service_req", "sep2"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 180,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_ue_service_req.sep2 = hdr.ue_service_req.sep2"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_ue_service_req", "ue_ip"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ue_service_req", "ue_ip"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 181,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_ue_service_req.ue_ip = hdr.ue_service_req.ue_ip"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_ue_service_req", "sep3"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ue_service_req", "sep2"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 182,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_ue_service_req.sep3 = hdr.ue_service_req.sep2"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_ue_service_req", "sgw_teid"]
-            },
-            {
-              "type" : "runtime_data",
-              "value" : 0
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 183,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_ue_service_req.sgw_teid = sgwteid"
-          }
-        },
-        {
-          "op" : "remove_header",
-          "parameters" : [
-            {
-              "type" : "header",
-              "value" : "ue_service_req"
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 186,
-            "column" : 8,
-            "source_fragment" : "hdr.ue_service_req.setInvalid()"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["standard_metadata", "egress_spec"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x00ff"
-            }
-          ],
-          "source_info" : {
-            "filename" : "include/definitions.p4",
-            "line" : 9,
-            "column" : 24,
-            "source_fragment" : "255; ..."
-          }
-        },
-        {
-          "op" : "add_header",
-          "parameters" : [
-            {
-              "type" : "header",
-              "value" : "packet_in"
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 193,
-            "column" : 8,
-            "source_fragment" : "hdr.packet_in.setValid()"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["packet_in", "ingress_port"]
-            },
-            {
-              "type" : "field",
-              "value" : ["standard_metadata", "ingress_port"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 194,
-            "column" : 8,
-            "source_fragment" : "hdr.packet_in.ingress_port = standard_metadata.ingress_port"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["packet_in", "reason_code"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x32"
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 195,
-            "column" : 1,
-            "source_fragment" : "hdr.packet_in.reason_code = 50"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "c_ingress.populate_ctxt_setup_uekey_sgwteid_map",
-      "id" : 15,
-      "runtime_data" : [
-        {
-          "name" : "sgwteid",
-          "bitwidth" : 32
-        }
-      ],
-      "primitives" : [
-        {
-          "op" : "add_header",
-          "parameters" : [
-            {
-              "type" : "header",
-              "value" : "offload_initial_ctxt_setup_resp"
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 215,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_initial_ctxt_setup_resp.setValid()"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_initial_ctxt_setup_resp", "ue_teid"]
-            },
-            {
-              "type" : "field",
-              "value" : ["initial_ctxt_setup_resp", "ue_teid"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 217,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_initial_ctxt_setup_resp.ue_teid = hdr.initial_ctxt_setup_resp.ue_teid"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_initial_ctxt_setup_resp", "sep1"]
-            },
-            {
-              "type" : "field",
-              "value" : ["initial_ctxt_setup_resp", "sep1"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 218,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_initial_ctxt_setup_resp.sep1 = hdr.initial_ctxt_setup_resp.sep1"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_initial_ctxt_setup_resp", "ue_key"]
-            },
-            {
-              "type" : "field",
-              "value" : ["initial_ctxt_setup_resp", "ue_key"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 219,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_initial_ctxt_setup_resp.ue_key = hdr.initial_ctxt_setup_resp.ue_key"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_initial_ctxt_setup_resp", "sep2"]
-            },
-            {
-              "type" : "field",
-              "value" : ["initial_ctxt_setup_resp", "sep2"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 220,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_initial_ctxt_setup_resp.sep2 = hdr.initial_ctxt_setup_resp.sep2"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_initial_ctxt_setup_resp", "ue_ip"]
-            },
-            {
-              "type" : "field",
-              "value" : ["initial_ctxt_setup_resp", "ue_ip"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 221,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_initial_ctxt_setup_resp.ue_ip = hdr.initial_ctxt_setup_resp.ue_ip"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_initial_ctxt_setup_resp", "sep3"]
-            },
-            {
-              "type" : "field",
-              "value" : ["initial_ctxt_setup_resp", "sep2"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 222,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_initial_ctxt_setup_resp.sep3 = hdr.initial_ctxt_setup_resp.sep2"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["offload_initial_ctxt_setup_resp", "sgw_teid"]
-            },
-            {
-              "type" : "runtime_data",
-              "value" : 0
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 223,
-            "column" : 8,
-            "source_fragment" : "hdr.offload_initial_ctxt_setup_resp.sgw_teid = sgwteid"
-          }
-        },
-        {
-          "op" : "remove_header",
-          "parameters" : [
-            {
-              "type" : "header",
-              "value" : "initial_ctxt_setup_resp"
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 226,
-            "column" : 8,
-            "source_fragment" : "hdr.initial_ctxt_setup_resp.setInvalid()"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["standard_metadata", "egress_spec"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x00ff"
-            }
-          ],
-          "source_info" : {
-            "filename" : "include/definitions.p4",
-            "line" : 9,
-            "column" : 24,
-            "source_fragment" : "255; ..."
-          }
-        },
-        {
-          "op" : "add_header",
-          "parameters" : [
-            {
-              "type" : "header",
-              "value" : "packet_in"
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 233,
-            "column" : 8,
-            "source_fragment" : "hdr.packet_in.setValid()"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["packet_in", "ingress_port"]
-            },
-            {
-              "type" : "field",
-              "value" : ["standard_metadata", "ingress_port"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 234,
-            "column" : 8,
-            "source_fragment" : "hdr.packet_in.ingress_port = standard_metadata.ingress_port"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["packet_in", "reason_code"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x32"
-            }
-          ],
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 235,
-            "column" : 1,
-            "source_fragment" : "hdr.packet_in.reason_code = 50"
-          }
-        }
-      ]
-    },
-    {
       "name" : "act",
-      "id" : 16,
+      "id" : 12,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2794,7 +2201,7 @@
     },
     {
       "name" : "act_0",
-      "id" : 17,
+      "id" : 13,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2824,7 +2231,7 @@
     },
     {
       "name" : "act_1",
-      "id" : 18,
+      "id" : 14,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2854,7 +2261,7 @@
     },
     {
       "name" : "act_2",
-      "id" : 19,
+      "id" : 15,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2890,7 +2297,7 @@
     },
     {
       "name" : "act_3",
-      "id" : 20,
+      "id" : 16,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2922,7 +2329,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 292,
+            "line" : 300,
             "column" : 24,
             "source_fragment" : "hdr.packet_in.setValid()"
           }
@@ -2941,7 +2348,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 293,
+            "line" : 301,
             "column" : 24,
             "source_fragment" : "hdr.packet_in.ingress_port = standard_metadata.ingress_port"
           }
@@ -2960,7 +2367,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 294,
+            "line" : 302,
             "column" : 3,
             "source_fragment" : "hdr.packet_in.reason_code = 50"
           }
@@ -2969,27 +2376,7 @@
     },
     {
       "name" : "act_4",
-      "id" : 21,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "clone_ingress_pkt_to_egress",
-          "parameters" : [
-            {
-              "type" : "hexstr",
-              "value" : "0x000001f4"
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x1"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name" : "act_5",
-      "id" : 22,
+      "id" : 17,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2997,35 +2384,157 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "hasReturned_0"]
+              "value" : ["standard_metadata", "egress_spec"]
             },
             {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "b2d",
-                  "left" : null,
-                  "right" : {
-                    "type" : "bool",
-                    "value" : true
-                  }
-                }
-              }
+              "type" : "hexstr",
+              "value" : "0x00ff"
+            }
+          ],
+          "source_info" : {
+            "filename" : "include/definitions.p4",
+            "line" : 9,
+            "column" : 24,
+            "source_fragment" : "255; ..."
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "packet_in"
             }
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 317,
-            "column" : 28,
-            "source_fragment" : "return"
+            "line" : 312,
+            "column" : 24,
+            "source_fragment" : "hdr.packet_in.setValid()"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["packet_in", "ingress_port"]
+            },
+            {
+              "type" : "field",
+              "value" : ["standard_metadata", "ingress_port"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "epc_basic_offload_sgw.p4",
+            "line" : 313,
+            "column" : 24,
+            "source_fragment" : "hdr.packet_in.ingress_port = standard_metadata.ingress_port"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["packet_in", "reason_code"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x32"
+            }
+          ],
+          "source_info" : {
+            "filename" : "epc_basic_offload_sgw.p4",
+            "line" : 314,
+            "column" : 24,
+            "source_fragment" : "hdr.packet_in.reason_code = 50"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "act_5",
+      "id" : 18,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["standard_metadata", "egress_spec"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00ff"
+            }
+          ],
+          "source_info" : {
+            "filename" : "include/definitions.p4",
+            "line" : 9,
+            "column" : 24,
+            "source_fragment" : "255; ..."
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "packet_in"
+            }
+          ],
+          "source_info" : {
+            "filename" : "epc_basic_offload_sgw.p4",
+            "line" : 324,
+            "column" : 24,
+            "source_fragment" : "hdr.packet_in.setValid()"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["packet_in", "ingress_port"]
+            },
+            {
+              "type" : "field",
+              "value" : ["standard_metadata", "ingress_port"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "epc_basic_offload_sgw.p4",
+            "line" : 325,
+            "column" : 24,
+            "source_fragment" : "hdr.packet_in.ingress_port = standard_metadata.ingress_port"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["packet_in", "reason_code"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x32"
+            }
+          ],
+          "source_info" : {
+            "filename" : "epc_basic_offload_sgw.p4",
+            "line" : 326,
+            "column" : 24,
+            "source_fragment" : "hdr.packet_in.reason_code = 50"
           }
         }
       ]
     },
     {
       "name" : "act_6",
-      "id" : 23,
+      "id" : 19,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -3052,7 +2561,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 322,
+            "line" : 337,
             "column" : 28,
             "source_fragment" : "return"
           }
@@ -3061,7 +2570,43 @@
     },
     {
       "name" : "act_7",
-      "id" : 24,
+      "id" : 20,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "hasReturned_0"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "b2d",
+                  "left" : null,
+                  "right" : {
+                    "type" : "bool",
+                    "value" : true
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "epc_basic_offload_sgw.p4",
+            "line" : 342,
+            "column" : 28,
+            "source_fragment" : "return"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "act_8",
+      "id" : 21,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -3090,8 +2635,8 @@
       ]
     },
     {
-      "name" : "act_8",
-      "id" : 25,
+      "name" : "act_9",
+      "id" : 22,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -3134,7 +2679,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 336,
+            "line" : 356,
             "column" : 17,
             "source_fragment" : "tx_port_counter.count((bit<32>) standard_metadata.egress_spec)"
           }
@@ -3142,8 +2687,8 @@
       ]
     },
     {
-      "name" : "act_9",
-      "id" : 26,
+      "name" : "act_10",
+      "id" : 23,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -3186,7 +2731,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 339,
+            "line" : 359,
             "column" : 17,
             "source_fragment" : "rx_port_counter.count((bit<32>) standard_metadata.ingress_port)"
           }
@@ -3195,13 +2740,13 @@
     },
     {
       "name" : "NoAction",
-      "id" : 27,
+      "id" : 24,
       "runtime_data" : [],
       "primitives" : []
     },
     {
       "name" : "c_egress.populate_ctxt_release_uekey_sgwteid_map",
-      "id" : 28,
+      "id" : 25,
       "runtime_data" : [
         {
           "name" : "sgwteid",
@@ -3219,7 +2764,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 354,
+            "line" : 374,
             "column" : 16,
             "source_fragment" : "hdr.initial_ctxt_setup_req.setValid()"
           }
@@ -3238,7 +2783,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 355,
+            "line" : 375,
             "column" : 16,
             "source_fragment" : "hdr.initial_ctxt_setup_req.epc_traffic_code = 18"
           }
@@ -3257,7 +2802,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 356,
+            "line" : 376,
             "column" : 16,
             "source_fragment" : "hdr.initial_ctxt_setup_req.sep1 = hdr.ue_service_req.sep1"
           }
@@ -3276,7 +2821,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 357,
+            "line" : 377,
             "column" : 16,
             "source_fragment" : "hdr.initial_ctxt_setup_req.sgw_teid = sgwteid"
           }
@@ -3291,7 +2836,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 359,
+            "line" : 379,
             "column" : 16,
             "source_fragment" : "hdr.data.setInvalid()"
           }
@@ -3306,7 +2851,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 360,
+            "line" : 380,
             "column" : 16,
             "source_fragment" : "hdr.ue_service_req.setInvalid()"
           }
@@ -3325,7 +2870,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 361,
+            "line" : 381,
             "column" : 16,
             "source_fragment" : "standard_metadata.egress_spec = 1"
           }
@@ -3344,7 +2889,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 363,
+            "line" : 383,
             "column" : 16,
             "source_fragment" : "hdr.ipv4.ttl = 64"
           }
@@ -3363,7 +2908,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 364,
+            "line" : 384,
             "column" : 16,
             "source_fragment" : "hdr.ethernet.dstAddr = hdr.ethernet.srcAddr"
           }
@@ -3382,7 +2927,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 365,
+            "line" : 385,
             "column" : 16,
             "source_fragment" : "hdr.ipv4.dstAddr = hdr.ipv4.srcAddr"
           }
@@ -3494,7 +3039,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 369,
+            "line" : 389,
             "column" : 20,
             "source_fragment" : "hdr.ethernet.srcAddr ="
           }
@@ -3537,7 +3082,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 370,
+            "line" : 390,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.srcAddr ="
           }
@@ -3750,7 +3295,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 373,
+            "line" : 393,
             "column" : 20,
             "source_fragment" : "hdr.ethernet.srcAddr ="
           }
@@ -3793,7 +3338,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 374,
+            "line" : 394,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.srcAddr ="
           }
@@ -4057,7 +3602,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 377,
+            "line" : 397,
             "column" : 20,
             "source_fragment" : "hdr.ethernet.srcAddr ="
           }
@@ -4100,7 +3645,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 378,
+            "line" : 398,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.srcAddr ="
           }
@@ -4415,7 +3960,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 382,
+            "line" : 402,
             "column" : 20,
             "source_fragment" : "hdr.ethernet.srcAddr ="
           }
@@ -4458,7 +4003,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 383,
+            "line" : 403,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.srcAddr ="
           }
@@ -4824,7 +4369,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 386,
+            "line" : 406,
             "column" : 20,
             "source_fragment" : "hdr.ethernet.srcAddr ="
           }
@@ -4867,7 +4412,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 387,
+            "line" : 407,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.srcAddr ="
           }
@@ -5251,7 +4796,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 391,
+            "line" : 411,
             "column" : 24,
             "source_fragment" : "hdr.ethernet.srcAddr ="
           }
@@ -5294,7 +4839,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 392,
+            "line" : 412,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.srcAddr ="
           }
@@ -5313,7 +4858,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 396,
+            "line" : 416,
             "column" : 16,
             "source_fragment" : "hdr.tmpvar.tmpUdpPort = hdr.udp.srcPort"
           }
@@ -5332,7 +4877,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 397,
+            "line" : 417,
             "column" : 16,
             "source_fragment" : "hdr.udp.srcPort = hdr.udp.dstPort"
           }
@@ -5351,7 +4896,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 398,
+            "line" : 418,
             "column" : 16,
             "source_fragment" : "hdr.udp.dstPort = hdr.tmpvar.tmpUdpPort"
           }
@@ -5366,7 +4911,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 399,
+            "line" : 419,
             "column" : 16,
             "source_fragment" : "hdr.tmpvar.setInvalid()"
           }
@@ -5385,7 +4930,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 401,
+            "line" : 421,
             "column" : 16,
             "source_fragment" : "hdr.udp.length_ = 11 + 8"
           }
@@ -5404,7 +4949,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 402,
+            "line" : 422,
             "column" : 16,
             "source_fragment" : "hdr.ipv4.totalLen = hdr.udp.length_ + 20"
           }
@@ -5412,8 +4957,8 @@
       ]
     },
     {
-      "name" : "act_10",
-      "id" : 29,
+      "name" : "act_11",
+      "id" : 26,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5457,8 +5002,8 @@
       ]
     },
     {
-      "name" : "act_11",
-      "id" : 30,
+      "name" : "act_12",
+      "id" : 27,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5502,8 +5047,8 @@
       ]
     },
     {
-      "name" : "act_12",
-      "id" : 31,
+      "name" : "act_13",
+      "id" : 28,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5547,8 +5092,8 @@
       ]
     },
     {
-      "name" : "act_13",
-      "id" : 32,
+      "name" : "act_14",
+      "id" : 29,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5592,8 +5137,8 @@
       ]
     },
     {
-      "name" : "act_14",
-      "id" : 33,
+      "name" : "act_15",
+      "id" : 30,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5637,8 +5182,8 @@
       ]
     },
     {
-      "name" : "act_15",
-      "id" : 34,
+      "name" : "act_16",
+      "id" : 31,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5682,8 +5227,8 @@
       ]
     },
     {
-      "name" : "act_16",
-      "id" : 35,
+      "name" : "act_17",
+      "id" : 32,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5696,7 +5241,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 432,
+            "line" : 452,
             "column" : 36,
             "source_fragment" : "hdr.ue_context_rel_command.setValid()"
           }
@@ -5715,7 +5260,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 433,
+            "line" : 453,
             "column" : 36,
             "source_fragment" : "hdr.ue_context_rel_command.epc_traffic_code = 15"
           }
@@ -5734,7 +5279,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 434,
+            "line" : 454,
             "column" : 36,
             "source_fragment" : "hdr.ue_context_rel_command.sep1 = hdr.ue_context_rel_req.sep1"
           }
@@ -5749,7 +5294,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 436,
+            "line" : 456,
             "column" : 36,
             "source_fragment" : "hdr.data.setInvalid()"
           }
@@ -5764,7 +5309,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 437,
+            "line" : 457,
             "column" : 36,
             "source_fragment" : "hdr.ue_context_rel_req.setInvalid()"
           }
@@ -5783,7 +5328,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 438,
+            "line" : 458,
             "column" : 36,
             "source_fragment" : "standard_metadata.egress_spec = 1"
           }
@@ -5802,7 +5347,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 441,
+            "line" : 461,
             "column" : 36,
             "source_fragment" : "hdr.ipv4.ttl = 64"
           }
@@ -5821,7 +5366,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 442,
+            "line" : 462,
             "column" : 36,
             "source_fragment" : "hdr.ethernet.dstAddr = hdr.ethernet.srcAddr"
           }
@@ -5840,7 +5385,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 443,
+            "line" : 463,
             "column" : 36,
             "source_fragment" : "hdr.ipv4.dstAddr = hdr.ipv4.srcAddr"
           }
@@ -5848,8 +5393,8 @@
       ]
     },
     {
-      "name" : "act_17",
-      "id" : 36,
+      "name" : "act_18",
+      "id" : 33,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5866,7 +5411,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 474,
+            "line" : 494,
             "column" : 36,
             "source_fragment" : "hdr.tmpvar.tmpUdpPort = hdr.udp.srcPort"
           }
@@ -5885,7 +5430,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 475,
+            "line" : 495,
             "column" : 36,
             "source_fragment" : "hdr.udp.srcPort = hdr.udp.dstPort"
           }
@@ -5904,7 +5449,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 476,
+            "line" : 496,
             "column" : 36,
             "source_fragment" : "hdr.udp.dstPort = hdr.tmpvar.tmpUdpPort"
           }
@@ -5919,7 +5464,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 477,
+            "line" : 497,
             "column" : 36,
             "source_fragment" : "hdr.tmpvar.setInvalid()"
           }
@@ -5938,7 +5483,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 479,
+            "line" : 499,
             "column" : 36,
             "source_fragment" : "hdr.udp.length_ = 7 + 8"
           }
@@ -5957,7 +5502,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 480,
+            "line" : 500,
             "column" : 36,
             "source_fragment" : "hdr.ipv4.totalLen = hdr.udp.length_ + 20"
           }
@@ -5965,8 +5510,8 @@
       ]
     },
     {
-      "name" : "act_18",
-      "id" : 37,
+      "name" : "act_19",
+      "id" : 34,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -6010,8 +5555,8 @@
       ]
     },
     {
-      "name" : "act_19",
-      "id" : 38,
+      "name" : "act_20",
+      "id" : 35,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -6055,8 +5600,8 @@
       ]
     },
     {
-      "name" : "act_20",
-      "id" : 39,
+      "name" : "act_21",
+      "id" : 36,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -6100,8 +5645,8 @@
       ]
     },
     {
-      "name" : "act_21",
-      "id" : 40,
+      "name" : "act_22",
+      "id" : 37,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -6145,8 +5690,8 @@
       ]
     },
     {
-      "name" : "act_22",
-      "id" : 41,
+      "name" : "act_23",
+      "id" : 38,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -6190,8 +5735,8 @@
       ]
     },
     {
-      "name" : "act_23",
-      "id" : 42,
+      "name" : "act_24",
+      "id" : 39,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -6235,8 +5780,8 @@
       ]
     },
     {
-      "name" : "act_24",
-      "id" : 43,
+      "name" : "act_25",
+      "id" : 40,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -6249,7 +5794,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 491,
+            "line" : 511,
             "column" : 36,
             "source_fragment" : "hdr.attach_accept.setValid()"
           }
@@ -6268,7 +5813,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 492,
+            "line" : 512,
             "column" : 36,
             "source_fragment" : "hdr.attach_accept.epc_traffic_code = 8"
           }
@@ -6287,7 +5832,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 493,
+            "line" : 513,
             "column" : 36,
             "source_fragment" : "hdr.attach_accept.sep1 = hdr.initial_ctxt_setup_resp.sep1"
           }
@@ -6306,7 +5851,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 494,
+            "line" : 514,
             "column" : 36,
             "source_fragment" : "hdr.attach_accept.ue_key = hdr.initial_ctxt_setup_resp.ue_key"
           }
@@ -6321,7 +5866,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 496,
+            "line" : 516,
             "column" : 36,
             "source_fragment" : "hdr.data.setInvalid()"
           }
@@ -6336,7 +5881,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 497,
+            "line" : 517,
             "column" : 36,
             "source_fragment" : "hdr.initial_ctxt_setup_resp.setInvalid()"
           }
@@ -6355,7 +5900,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 499,
+            "line" : 519,
             "column" : 36,
             "source_fragment" : "standard_metadata.egress_spec = 1"
           }
@@ -6374,7 +5919,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 500,
+            "line" : 520,
             "column" : 36,
             "source_fragment" : "hdr.ipv4.ttl = 64"
           }
@@ -6393,7 +5938,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 502,
+            "line" : 522,
             "column" : 36,
             "source_fragment" : "hdr.ethernet.dstAddr = hdr.ethernet.srcAddr"
           }
@@ -6412,7 +5957,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 503,
+            "line" : 523,
             "column" : 36,
             "source_fragment" : "hdr.ipv4.dstAddr = hdr.ipv4.srcAddr"
           }
@@ -6420,8 +5965,8 @@
       ]
     },
     {
-      "name" : "act_25",
-      "id" : 44,
+      "name" : "act_26",
+      "id" : 41,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -6438,7 +5983,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 535,
+            "line" : 555,
             "column" : 36,
             "source_fragment" : "hdr.tmpvar.tmpUdpPort = hdr.udp.srcPort"
           }
@@ -6457,7 +6002,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 536,
+            "line" : 556,
             "column" : 36,
             "source_fragment" : "hdr.udp.srcPort = hdr.udp.dstPort"
           }
@@ -6476,7 +6021,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 537,
+            "line" : 557,
             "column" : 36,
             "source_fragment" : "hdr.udp.dstPort = hdr.tmpvar.tmpUdpPort"
           }
@@ -6491,7 +6036,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 538,
+            "line" : 558,
             "column" : 36,
             "source_fragment" : "hdr.tmpvar.setInvalid()"
           }
@@ -6510,7 +6055,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 540,
+            "line" : 560,
             "column" : 36,
             "source_fragment" : "hdr.udp.length_ = 11 + 8"
           }
@@ -6529,7 +6074,7 @@
           ],
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 541,
+            "line" : 561,
             "column" : 36,
             "source_fragment" : "hdr.ipv4.totalLen = hdr.udp.length_ + 20"
           }
@@ -6559,14 +6104,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [24],
-          "actions" : ["act_7"],
+          "action_ids" : [21],
+          "actions" : ["act_8"],
           "base_default_next" : "node_3",
           "next_tables" : {
-            "act_7" : "node_3"
+            "act_8" : "node_3"
           },
           "default_entry" : {
-            "action_id" : 24,
+            "action_id" : 21,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6582,14 +6127,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [16],
+          "action_ids" : [12],
           "actions" : ["act"],
-          "base_default_next" : "node_30",
+          "base_default_next" : "node_29",
           "next_tables" : {
-            "act" : "node_30"
+            "act" : "node_29"
           },
           "default_entry" : {
-            "action_id" : 16,
+            "action_id" : 12,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6642,7 +6187,7 @@
           "with_counters" : true,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [7, 8, 9, 0],
+          "action_ids" : [5, 6, 7, 0],
           "actions" : ["c_ingress.ipv4_forward", "c_ingress.send_to_cpu", "c_ingress._drop", "NoAction"],
           "base_default_next" : null,
           "next_tables" : {
@@ -6666,14 +6211,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [17],
+          "action_ids" : [13],
           "actions" : ["act_0"],
           "base_default_next" : "node_8",
           "next_tables" : {
             "act_0" : "node_8"
           },
           "default_entry" : {
-            "action_id" : 17,
+            "action_id" : 13,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6689,14 +6234,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [18],
+          "action_ids" : [14],
           "actions" : ["act_1"],
           "base_default_next" : "node_8",
           "next_tables" : {
             "act_1" : "node_8"
           },
           "default_entry" : {
-            "action_id" : 18,
+            "action_id" : 14,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6712,14 +6257,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [19],
+          "action_ids" : [15],
           "actions" : ["act_2"],
           "base_default_next" : "node_10",
           "next_tables" : {
             "act_2" : "node_10"
           },
           "default_entry" : {
-            "action_id" : 19,
+            "action_id" : 15,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6735,14 +6280,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [21],
-          "actions" : ["act_4"],
-          "base_default_next" : "node_13",
+          "action_ids" : [16],
+          "actions" : ["act_3"],
+          "base_default_next" : "node_18",
           "next_tables" : {
-            "act_4" : "node_13"
+            "act_3" : "node_18"
           },
           "default_entry" : {
-            "action_id" : 21,
+            "action_id" : 16,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6758,96 +6303,45 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [20],
-          "actions" : ["act_3"],
-          "base_default_next" : "node_19",
+          "action_ids" : [17],
+          "actions" : ["act_4"],
+          "base_default_next" : "node_18",
           "next_tables" : {
-            "act_3" : "node_19"
+            "act_4" : "node_18"
           },
           "default_entry" : {
-            "action_id" : 20,
+            "action_id" : 17,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "c_ingress.service_req_uekey_sgwteid_map",
+          "name" : "tbl_act_6",
           "id" : 8,
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 198,
-            "column" : 10,
-            "source_fragment" : "service_req_uekey_sgwteid_map"
-          },
-          "key" : [
-            {
-              "match_type" : "exact",
-              "name" : "hdr.ue_service_req.ue_key",
-              "target" : ["ue_service_req", "ue_key"],
-              "mask" : null
-            }
-          ],
+          "key" : [],
           "match_type" : "exact",
           "type" : "simple",
-          "max_size" : 2048,
+          "max_size" : 1024,
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [14, 5],
-          "actions" : ["c_ingress.populate_service_req_uekey_sgwteid_map", "NoAction"],
-          "base_default_next" : "node_19",
+          "action_ids" : [18],
+          "actions" : ["act_5"],
+          "base_default_next" : "node_18",
           "next_tables" : {
-            "c_ingress.populate_service_req_uekey_sgwteid_map" : "node_19",
-            "NoAction" : "node_19"
+            "act_5" : "node_18"
           },
           "default_entry" : {
-            "action_id" : 5,
-            "action_const" : false,
+            "action_id" : 18,
+            "action_const" : true,
             "action_data" : [],
-            "action_entry_const" : false
-          }
-        },
-        {
-          "name" : "c_ingress.ctxt_setup_uekey_sgwteid_map",
-          "id" : 9,
-          "source_info" : {
-            "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 238,
-            "column" : 10,
-            "source_fragment" : "ctxt_setup_uekey_sgwteid_map"
-          },
-          "key" : [
-            {
-              "match_type" : "exact",
-              "name" : "hdr.initial_ctxt_setup_resp.ue_key",
-              "target" : ["initial_ctxt_setup_resp", "ue_key"],
-              "mask" : null
-            }
-          ],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 2048,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [15, 6],
-          "actions" : ["c_ingress.populate_ctxt_setup_uekey_sgwteid_map", "NoAction"],
-          "base_default_next" : "node_19",
-          "next_tables" : {
-            "c_ingress.populate_ctxt_setup_uekey_sgwteid_map" : "node_19",
-            "NoAction" : "node_19"
-          },
-          "default_entry" : {
-            "action_id" : 6,
-            "action_const" : false,
-            "action_data" : [],
-            "action_entry_const" : false
+            "action_entry_const" : true
           }
         },
         {
           "name" : "c_ingress.ip_op_tun_s2_uplink",
-          "id" : 10,
+          "id" : 9,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
             "line" : 91,
@@ -6868,12 +6362,12 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [10, 1],
+          "action_ids" : [8, 1],
           "actions" : ["c_ingress.populate_ip_op_tun_s2_uplink", "NoAction"],
-          "base_default_next" : "tbl_act_6",
+          "base_default_next" : "tbl_act_7",
           "next_tables" : {
-            "c_ingress.populate_ip_op_tun_s2_uplink" : "tbl_act_6",
-            "NoAction" : "tbl_act_6"
+            "c_ingress.populate_ip_op_tun_s2_uplink" : "tbl_act_7",
+            "NoAction" : "tbl_act_7"
           },
           "default_entry" : {
             "action_id" : 1,
@@ -6883,8 +6377,8 @@
           }
         },
         {
-          "name" : "tbl_act_6",
-          "id" : 11,
+          "name" : "tbl_act_7",
+          "id" : 10,
           "key" : [],
           "match_type" : "exact",
           "type" : "simple",
@@ -6892,14 +6386,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [22],
-          "actions" : ["act_5"],
-          "base_default_next" : "node_26",
+          "action_ids" : [19],
+          "actions" : ["act_6"],
+          "base_default_next" : "node_25",
           "next_tables" : {
-            "act_5" : "node_26"
+            "act_6" : "node_25"
           },
           "default_entry" : {
-            "action_id" : 22,
+            "action_id" : 19,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6907,7 +6401,7 @@
         },
         {
           "name" : "c_ingress.ip_op_tun_s2_downlink",
-          "id" : 12,
+          "id" : 11,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
             "line" : 124,
@@ -6928,12 +6422,12 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [11, 2],
+          "action_ids" : [9, 2],
           "actions" : ["c_ingress.populate_ip_op_tun_s2_downlink", "NoAction"],
-          "base_default_next" : "tbl_act_7",
+          "base_default_next" : "tbl_act_8",
           "next_tables" : {
-            "c_ingress.populate_ip_op_tun_s2_downlink" : "tbl_act_7",
-            "NoAction" : "tbl_act_7"
+            "c_ingress.populate_ip_op_tun_s2_downlink" : "tbl_act_8",
+            "NoAction" : "tbl_act_8"
           },
           "default_entry" : {
             "action_id" : 2,
@@ -6943,8 +6437,8 @@
           }
         },
         {
-          "name" : "tbl_act_7",
-          "id" : 13,
+          "name" : "tbl_act_8",
+          "id" : 12,
           "key" : [],
           "match_type" : "exact",
           "type" : "simple",
@@ -6952,14 +6446,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [23],
-          "actions" : ["act_6"],
-          "base_default_next" : "node_26",
+          "action_ids" : [20],
+          "actions" : ["act_7"],
+          "base_default_next" : "node_25",
           "next_tables" : {
-            "act_6" : "node_26"
+            "act_7" : "node_25"
           },
           "default_entry" : {
-            "action_id" : 23,
+            "action_id" : 20,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6967,7 +6461,7 @@
         },
         {
           "name" : "c_ingress.uekey_uestate_map",
-          "id" : 14,
+          "id" : 13,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
             "line" : 143,
@@ -6988,7 +6482,7 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [12, 3],
+          "action_ids" : [10, 3],
           "actions" : ["c_ingress.populate_uekey_uestate_map", "NoAction"],
           "base_default_next" : "c_ingress.uekey_guti_map",
           "next_tables" : {
@@ -7004,7 +6498,7 @@
         },
         {
           "name" : "c_ingress.uekey_guti_map",
-          "id" : 15,
+          "id" : 14,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
             "line" : 159,
@@ -7025,12 +6519,12 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [13, 4],
+          "action_ids" : [11, 4],
           "actions" : ["c_ingress.populate_uekey_guti_map", "NoAction"],
-          "base_default_next" : "node_30",
+          "base_default_next" : "node_29",
           "next_tables" : {
-            "c_ingress.populate_uekey_guti_map" : "node_30",
-            "NoAction" : "node_30"
+            "c_ingress.populate_uekey_guti_map" : "node_29",
+            "NoAction" : "node_29"
           },
           "default_entry" : {
             "action_id" : 4,
@@ -7040,7 +6534,30 @@
           }
         },
         {
-          "name" : "tbl_act_8",
+          "name" : "tbl_act_9",
+          "id" : 15,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [22],
+          "actions" : ["act_9"],
+          "base_default_next" : "node_32",
+          "next_tables" : {
+            "act_9" : "node_32"
+          },
+          "default_entry" : {
+            "action_id" : 22,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_10",
           "id" : 16,
           "key" : [],
           "match_type" : "exact",
@@ -7049,37 +6566,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [25],
-          "actions" : ["act_8"],
-          "base_default_next" : "node_33",
-          "next_tables" : {
-            "act_8" : "node_33"
-          },
-          "default_entry" : {
-            "action_id" : 25,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_act_9",
-          "id" : 17,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [26],
-          "actions" : ["act_9"],
+          "action_ids" : [23],
+          "actions" : ["act_10"],
           "base_default_next" : null,
           "next_tables" : {
-            "act_9" : null
+            "act_10" : null
           },
           "default_entry" : {
-            "action_id" : 26,
+            "action_id" : 23,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -7153,7 +6647,7 @@
             }
           },
           "true_next" : "node_11",
-          "false_next" : "node_26"
+          "false_next" : "node_25"
         },
         {
           "name" : "node_11",
@@ -7199,15 +6693,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_4",
-          "false_next" : "node_19"
+          "true_next" : "node_12",
+          "false_next" : "node_18"
         },
         {
-          "name" : "node_13",
+          "name" : "node_12",
           "id" : 4,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 285,
+            "line" : 294,
             "column" : 23,
             "source_fragment" : "hdr.data.epc_traffic_code == 14"
           },
@@ -7225,16 +6719,16 @@
               }
             }
           },
-          "true_next" : "tbl_act_5",
-          "false_next" : "node_15"
+          "true_next" : "tbl_act_4",
+          "false_next" : "node_14"
         },
         {
-          "name" : "node_15",
+          "name" : "node_14",
           "id" : 5,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 298,
-            "column" : 28,
+            "line" : 305,
+            "column" : 14,
             "source_fragment" : "hdr.data.epc_traffic_code == 17"
           },
           "expression" : {
@@ -7251,16 +6745,16 @@
               }
             }
           },
-          "true_next" : "c_ingress.service_req_uekey_sgwteid_map",
-          "false_next" : "node_17"
+          "true_next" : "tbl_act_5",
+          "false_next" : "node_16"
         },
         {
-          "name" : "node_17",
+          "name" : "node_16",
           "id" : 6,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 304,
-            "column" : 28,
+            "line" : 317,
+            "column" : 14,
             "source_fragment" : "hdr.data.epc_traffic_code == 19"
           },
           "expression" : {
@@ -7277,15 +6771,15 @@
               }
             }
           },
-          "true_next" : "c_ingress.ctxt_setup_uekey_sgwteid_map",
-          "false_next" : "node_19"
+          "true_next" : "tbl_act_6",
+          "false_next" : "node_18"
         },
         {
-          "name" : "node_19",
+          "name" : "node_18",
           "id" : 7,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 312,
+            "line" : 332,
             "column" : 16,
             "source_fragment" : "hdr.gtpu.isValid()"
           },
@@ -7300,15 +6794,15 @@
               }
             }
           },
-          "true_next" : "node_20",
-          "false_next" : "node_26"
+          "true_next" : "node_19",
+          "false_next" : "node_25"
         },
         {
-          "name" : "node_20",
+          "name" : "node_19",
           "id" : 8,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 315,
+            "line" : 335,
             "column" : 23,
             "source_fragment" : "standard_metadata.ingress_port==1"
           },
@@ -7327,14 +6821,14 @@
             }
           },
           "true_next" : "c_ingress.ip_op_tun_s2_uplink",
-          "false_next" : "node_23"
+          "false_next" : "node_22"
         },
         {
-          "name" : "node_23",
+          "name" : "node_22",
           "id" : 9,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 320,
+            "line" : 340,
             "column" : 28,
             "source_fragment" : "standard_metadata.ingress_port==2"
           },
@@ -7353,10 +6847,10 @@
             }
           },
           "true_next" : "c_ingress.ip_op_tun_s2_downlink",
-          "false_next" : "node_26"
+          "false_next" : "node_25"
         },
         {
-          "name" : "node_26",
+          "name" : "node_25",
           "id" : 10,
           "expression" : {
             "type" : "expression",
@@ -7376,15 +6870,15 @@
               }
             }
           },
-          "true_next" : "node_27",
-          "false_next" : "node_30"
+          "true_next" : "node_26",
+          "false_next" : "node_29"
         },
         {
-          "name" : "node_27",
+          "name" : "node_26",
           "id" : 11,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 328,
+            "line" : 348,
             "column" : 15,
             "source_fragment" : "hdr.ipv4.ttl == 250"
           },
@@ -7403,10 +6897,10 @@
             }
           },
           "true_next" : "c_ingress.uekey_uestate_map",
-          "false_next" : "node_30"
+          "false_next" : "node_29"
         },
         {
-          "name" : "node_30",
+          "name" : "node_29",
           "id" : 12,
           "expression" : {
             "type" : "expression",
@@ -7427,14 +6921,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "node_31"
+          "true_next" : "node_30"
         },
         {
-          "name" : "node_31",
+          "name" : "node_30",
           "id" : 13,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 335,
+            "line" : 355,
             "column" : 17,
             "source_fragment" : "standard_metadata.egress_spec < 255"
           },
@@ -7452,15 +6946,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_8",
-          "false_next" : "node_33"
+          "true_next" : "tbl_act_9",
+          "false_next" : "node_32"
         },
         {
-          "name" : "node_33",
+          "name" : "node_32",
           "id" : 14,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 338,
+            "line" : 358,
             "column" : 17,
             "source_fragment" : "standard_metadata.ingress_port < 255"
           },
@@ -7479,7 +6973,7 @@
             }
           },
           "false_next" : null,
-          "true_next" : "tbl_act_9"
+          "true_next" : "tbl_act_10"
         }
       ]
     },
@@ -7488,107 +6982,15 @@
       "id" : 1,
       "source_info" : {
         "filename" : "epc_basic_offload_sgw.p4",
-        "line" : 347,
+        "line" : 367,
         "column" : 8,
         "source_fragment" : "c_egress"
       },
-      "init_table" : "node_37",
+      "init_table" : "node_36",
       "tables" : [
         {
-          "name" : "tbl_act_10",
-          "id" : 18,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [35],
-          "actions" : ["act_16"],
-          "base_default_next" : "node_40",
-          "next_tables" : {
-            "act_16" : "node_40"
-          },
-          "default_entry" : {
-            "action_id" : 35,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
           "name" : "tbl_act_11",
-          "id" : 19,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [29],
-          "actions" : ["act_10"],
-          "base_default_next" : "tbl_act_17",
-          "next_tables" : {
-            "act_10" : "tbl_act_17"
-          },
-          "default_entry" : {
-            "action_id" : 29,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_act_12",
-          "id" : 20,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [30],
-          "actions" : ["act_11"],
-          "base_default_next" : "tbl_act_17",
-          "next_tables" : {
-            "act_11" : "tbl_act_17"
-          },
-          "default_entry" : {
-            "action_id" : 30,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_act_13",
-          "id" : 21,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [31],
-          "actions" : ["act_12"],
-          "base_default_next" : "tbl_act_17",
-          "next_tables" : {
-            "act_12" : "tbl_act_17"
-          },
-          "default_entry" : {
-            "action_id" : 31,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_act_14",
-          "id" : 22,
+          "id" : 17,
           "key" : [],
           "match_type" : "exact",
           "type" : "simple",
@@ -7597,10 +6999,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [32],
-          "actions" : ["act_13"],
-          "base_default_next" : "tbl_act_17",
+          "actions" : ["act_17"],
+          "base_default_next" : "node_39",
           "next_tables" : {
-            "act_13" : "tbl_act_17"
+            "act_17" : "node_39"
           },
           "default_entry" : {
             "action_id" : 32,
@@ -7610,7 +7012,122 @@
           }
         },
         {
+          "name" : "tbl_act_12",
+          "id" : 18,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [26],
+          "actions" : ["act_11"],
+          "base_default_next" : "tbl_act_18",
+          "next_tables" : {
+            "act_11" : "tbl_act_18"
+          },
+          "default_entry" : {
+            "action_id" : 26,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_13",
+          "id" : 19,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [27],
+          "actions" : ["act_12"],
+          "base_default_next" : "tbl_act_18",
+          "next_tables" : {
+            "act_12" : "tbl_act_18"
+          },
+          "default_entry" : {
+            "action_id" : 27,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_14",
+          "id" : 20,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [28],
+          "actions" : ["act_13"],
+          "base_default_next" : "tbl_act_18",
+          "next_tables" : {
+            "act_13" : "tbl_act_18"
+          },
+          "default_entry" : {
+            "action_id" : 28,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
           "name" : "tbl_act_15",
+          "id" : 21,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [29],
+          "actions" : ["act_14"],
+          "base_default_next" : "tbl_act_18",
+          "next_tables" : {
+            "act_14" : "tbl_act_18"
+          },
+          "default_entry" : {
+            "action_id" : 29,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_16",
+          "id" : 22,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [30],
+          "actions" : ["act_15"],
+          "base_default_next" : "tbl_act_18",
+          "next_tables" : {
+            "act_15" : "tbl_act_18"
+          },
+          "default_entry" : {
+            "action_id" : 30,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_17",
           "id" : 23,
           "key" : [],
           "match_type" : "exact",
@@ -7619,11 +7136,34 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [33],
-          "actions" : ["act_14"],
-          "base_default_next" : "tbl_act_17",
+          "action_ids" : [31],
+          "actions" : ["act_16"],
+          "base_default_next" : "tbl_act_18",
           "next_tables" : {
-            "act_14" : "tbl_act_17"
+            "act_16" : "tbl_act_18"
+          },
+          "default_entry" : {
+            "action_id" : 31,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_18",
+          "id" : 24,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [33],
+          "actions" : ["act_18"],
+          "base_default_next" : null,
+          "next_tables" : {
+            "act_18" : null
           },
           "default_entry" : {
             "action_id" : 33,
@@ -7633,57 +7173,11 @@
           }
         },
         {
-          "name" : "tbl_act_16",
-          "id" : 24,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [34],
-          "actions" : ["act_15"],
-          "base_default_next" : "tbl_act_17",
-          "next_tables" : {
-            "act_15" : "tbl_act_17"
-          },
-          "default_entry" : {
-            "action_id" : 34,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_act_17",
-          "id" : 25,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [36],
-          "actions" : ["act_17"],
-          "base_default_next" : null,
-          "next_tables" : {
-            "act_17" : null
-          },
-          "default_entry" : {
-            "action_id" : 36,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
           "name" : "c_egress.ctxt_release_uekey_sgwteid_map",
-          "id" : 26,
+          "id" : 25,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 405,
+            "line" : 425,
             "column" : 14,
             "source_fragment" : "ctxt_release_uekey_sgwteid_map"
           },
@@ -7701,7 +7195,7 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [28, 27],
+          "action_ids" : [25, 24],
           "actions" : ["c_egress.populate_ctxt_release_uekey_sgwteid_map", "NoAction"],
           "base_default_next" : null,
           "next_tables" : {
@@ -7709,107 +7203,15 @@
             "NoAction" : null
           },
           "default_entry" : {
-            "action_id" : 27,
+            "action_id" : 24,
             "action_const" : false,
             "action_data" : [],
             "action_entry_const" : false
           }
         },
         {
-          "name" : "tbl_act_18",
-          "id" : 27,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [43],
-          "actions" : ["act_24"],
-          "base_default_next" : "node_57",
-          "next_tables" : {
-            "act_24" : "node_57"
-          },
-          "default_entry" : {
-            "action_id" : 43,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
           "name" : "tbl_act_19",
-          "id" : 28,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [37],
-          "actions" : ["act_18"],
-          "base_default_next" : "tbl_act_25",
-          "next_tables" : {
-            "act_18" : "tbl_act_25"
-          },
-          "default_entry" : {
-            "action_id" : 37,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_act_20",
-          "id" : 29,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [38],
-          "actions" : ["act_19"],
-          "base_default_next" : "tbl_act_25",
-          "next_tables" : {
-            "act_19" : "tbl_act_25"
-          },
-          "default_entry" : {
-            "action_id" : 38,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_act_21",
-          "id" : 30,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [39],
-          "actions" : ["act_20"],
-          "base_default_next" : "tbl_act_25",
-          "next_tables" : {
-            "act_20" : "tbl_act_25"
-          },
-          "default_entry" : {
-            "action_id" : 39,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_act_22",
-          "id" : 31,
+          "id" : 26,
           "key" : [],
           "match_type" : "exact",
           "type" : "simple",
@@ -7818,10 +7220,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [40],
-          "actions" : ["act_21"],
-          "base_default_next" : "tbl_act_25",
+          "actions" : ["act_25"],
+          "base_default_next" : "node_56",
           "next_tables" : {
-            "act_21" : "tbl_act_25"
+            "act_25" : "node_56"
           },
           "default_entry" : {
             "action_id" : 40,
@@ -7831,7 +7233,122 @@
           }
         },
         {
+          "name" : "tbl_act_20",
+          "id" : 27,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [34],
+          "actions" : ["act_19"],
+          "base_default_next" : "tbl_act_26",
+          "next_tables" : {
+            "act_19" : "tbl_act_26"
+          },
+          "default_entry" : {
+            "action_id" : 34,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_21",
+          "id" : 28,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [35],
+          "actions" : ["act_20"],
+          "base_default_next" : "tbl_act_26",
+          "next_tables" : {
+            "act_20" : "tbl_act_26"
+          },
+          "default_entry" : {
+            "action_id" : 35,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_22",
+          "id" : 29,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [36],
+          "actions" : ["act_21"],
+          "base_default_next" : "tbl_act_26",
+          "next_tables" : {
+            "act_21" : "tbl_act_26"
+          },
+          "default_entry" : {
+            "action_id" : 36,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
           "name" : "tbl_act_23",
+          "id" : 30,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [37],
+          "actions" : ["act_22"],
+          "base_default_next" : "tbl_act_26",
+          "next_tables" : {
+            "act_22" : "tbl_act_26"
+          },
+          "default_entry" : {
+            "action_id" : 37,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_24",
+          "id" : 31,
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [38],
+          "actions" : ["act_23"],
+          "base_default_next" : "tbl_act_26",
+          "next_tables" : {
+            "act_23" : "tbl_act_26"
+          },
+          "default_entry" : {
+            "action_id" : 38,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_act_25",
           "id" : 32,
           "key" : [],
           "match_type" : "exact",
@@ -7840,21 +7357,21 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [41],
-          "actions" : ["act_22"],
-          "base_default_next" : "tbl_act_25",
+          "action_ids" : [39],
+          "actions" : ["act_24"],
+          "base_default_next" : "tbl_act_26",
           "next_tables" : {
-            "act_22" : "tbl_act_25"
+            "act_24" : "tbl_act_26"
           },
           "default_entry" : {
-            "action_id" : 41,
+            "action_id" : 39,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_act_24",
+          "name" : "tbl_act_26",
           "id" : 33,
           "key" : [],
           "match_type" : "exact",
@@ -7863,37 +7380,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [42],
-          "actions" : ["act_23"],
-          "base_default_next" : "tbl_act_25",
-          "next_tables" : {
-            "act_23" : "tbl_act_25"
-          },
-          "default_entry" : {
-            "action_id" : 42,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_act_25",
-          "id" : 34,
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [44],
-          "actions" : ["act_25"],
+          "action_ids" : [41],
+          "actions" : ["act_26"],
           "base_default_next" : null,
           "next_tables" : {
-            "act_25" : null
+            "act_26" : null
           },
           "default_entry" : {
-            "action_id" : 44,
+            "action_id" : 41,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -7903,11 +7397,11 @@
       "action_profiles" : [],
       "conditionals" : [
         {
-          "name" : "node_37",
+          "name" : "node_36",
           "id" : 15,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 420,
+            "line" : 440,
             "column" : 21,
             "source_fragment" : "standard_metadata.instance_type == BMV2_V1MODEL_INSTANCE_TYPE_INGRESS_CLONE"
           },
@@ -7926,14 +7420,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "node_38"
+          "true_next" : "node_37"
         },
         {
-          "name" : "node_38",
+          "name" : "node_37",
           "id" : 16,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 430,
+            "line" : 450,
             "column" : 31,
             "source_fragment" : "hdr.data.epc_traffic_code == 14"
           },
@@ -7951,15 +7445,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_10",
-          "false_next" : "node_53"
+          "true_next" : "tbl_act_11",
+          "false_next" : "node_52"
         },
         {
-          "name" : "node_40",
+          "name" : "node_39",
           "id" : 17,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 446,
+            "line" : 466,
             "column" : 39,
             "source_fragment" : "hdr.ethernet.srcAddr == ran1"
           },
@@ -7977,15 +7471,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_11",
-          "false_next" : "node_42"
+          "true_next" : "tbl_act_12",
+          "false_next" : "node_41"
         },
         {
-          "name" : "node_42",
+          "name" : "node_41",
           "id" : 18,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 450,
+            "line" : 470,
             "column" : 44,
             "source_fragment" : "hdr.ethernet.srcAddr == ran2"
           },
@@ -8003,15 +7497,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_12",
-          "false_next" : "node_44"
+          "true_next" : "tbl_act_13",
+          "false_next" : "node_43"
         },
         {
-          "name" : "node_44",
+          "name" : "node_43",
           "id" : 19,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 454,
+            "line" : 474,
             "column" : 44,
             "source_fragment" : "hdr.ethernet.srcAddr == ran3"
           },
@@ -8029,15 +7523,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_13",
-          "false_next" : "node_46"
+          "true_next" : "tbl_act_14",
+          "false_next" : "node_45"
         },
         {
-          "name" : "node_46",
+          "name" : "node_45",
           "id" : 20,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 459,
+            "line" : 479,
             "column" : 44,
             "source_fragment" : "hdr.ethernet.srcAddr == ran4"
           },
@@ -8055,15 +7549,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_14",
-          "false_next" : "node_48"
+          "true_next" : "tbl_act_15",
+          "false_next" : "node_47"
         },
         {
-          "name" : "node_48",
+          "name" : "node_47",
           "id" : 21,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 463,
+            "line" : 483,
             "column" : 45,
             "source_fragment" : "hdr.ethernet.srcAddr == ran5"
           },
@@ -8081,15 +7575,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_15",
-          "false_next" : "node_50"
+          "true_next" : "tbl_act_16",
+          "false_next" : "node_49"
         },
         {
-          "name" : "node_50",
+          "name" : "node_49",
           "id" : 22,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 468,
+            "line" : 488,
             "column" : 44,
             "source_fragment" : "hdr.ethernet.srcAddr == ran6"
           },
@@ -8107,15 +7601,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_16",
-          "false_next" : "tbl_act_17"
+          "true_next" : "tbl_act_17",
+          "false_next" : "tbl_act_18"
         },
         {
-          "name" : "node_53",
+          "name" : "node_52",
           "id" : 23,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 484,
+            "line" : 504,
             "column" : 36,
             "source_fragment" : "hdr.data.epc_traffic_code == 17"
           },
@@ -8134,14 +7628,14 @@
             }
           },
           "true_next" : "c_egress.ctxt_release_uekey_sgwteid_map",
-          "false_next" : "node_55"
+          "false_next" : "node_54"
         },
         {
-          "name" : "node_55",
+          "name" : "node_54",
           "id" : 24,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 489,
+            "line" : 509,
             "column" : 36,
             "source_fragment" : "hdr.data.epc_traffic_code == 19"
           },
@@ -8160,14 +7654,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "tbl_act_18"
+          "true_next" : "tbl_act_19"
         },
         {
-          "name" : "node_57",
+          "name" : "node_56",
           "id" : 25,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 505,
+            "line" : 525,
             "column" : 39,
             "source_fragment" : "hdr.ethernet.srcAddr == ran1"
           },
@@ -8185,15 +7679,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_19",
-          "false_next" : "node_59"
+          "true_next" : "tbl_act_20",
+          "false_next" : "node_58"
         },
         {
-          "name" : "node_59",
+          "name" : "node_58",
           "id" : 26,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 510,
+            "line" : 530,
             "column" : 44,
             "source_fragment" : "hdr.ethernet.srcAddr == ran2"
           },
@@ -8211,15 +7705,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_20",
-          "false_next" : "node_61"
+          "true_next" : "tbl_act_21",
+          "false_next" : "node_60"
         },
         {
-          "name" : "node_61",
+          "name" : "node_60",
           "id" : 27,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 515,
+            "line" : 535,
             "column" : 44,
             "source_fragment" : "hdr.ethernet.srcAddr == ran3"
           },
@@ -8237,15 +7731,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_21",
-          "false_next" : "node_63"
+          "true_next" : "tbl_act_22",
+          "false_next" : "node_62"
         },
         {
-          "name" : "node_63",
+          "name" : "node_62",
           "id" : 28,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 520,
+            "line" : 540,
             "column" : 44,
             "source_fragment" : "hdr.ethernet.srcAddr == ran4"
           },
@@ -8263,15 +7757,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_22",
-          "false_next" : "node_65"
+          "true_next" : "tbl_act_23",
+          "false_next" : "node_64"
         },
         {
-          "name" : "node_65",
+          "name" : "node_64",
           "id" : 29,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 525,
+            "line" : 545,
             "column" : 44,
             "source_fragment" : "hdr.ethernet.srcAddr == ran5"
           },
@@ -8289,15 +7783,15 @@
               }
             }
           },
-          "true_next" : "tbl_act_23",
-          "false_next" : "node_67"
+          "true_next" : "tbl_act_24",
+          "false_next" : "node_66"
         },
         {
-          "name" : "node_67",
+          "name" : "node_66",
           "id" : 30,
           "source_info" : {
             "filename" : "epc_basic_offload_sgw.p4",
-            "line" : 530,
+            "line" : 550,
             "column" : 44,
             "source_fragment" : "hdr.ethernet.srcAddr == ran6"
           },
@@ -8315,8 +7809,8 @@
               }
             }
           },
-          "true_next" : "tbl_act_24",
-          "false_next" : "tbl_act_25"
+          "true_next" : "tbl_act_25",
+          "false_next" : "tbl_act_26"
         }
       ]
     }

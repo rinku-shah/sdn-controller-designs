@@ -131,46 +131,6 @@ tables {
 }
 tables {
   preamble {
-    id: 33601751
-    name: "c_ingress.service_req_uekey_sgwteid_map"
-    alias: "service_req_uekey_sgwteid_map"
-  }
-  match_fields {
-    id: 1
-    name: "hdr.ue_service_req.ue_key"
-    bitwidth: 32
-    match_type: EXACT
-  }
-  action_refs {
-    id: 16803908
-  }
-  action_refs {
-    id: 16800567
-  }
-  size: 2048
-}
-tables {
-  preamble {
-    id: 33583970
-    name: "c_ingress.ctxt_setup_uekey_sgwteid_map"
-    alias: "ctxt_setup_uekey_sgwteid_map"
-  }
-  match_fields {
-    id: 1
-    name: "hdr.initial_ctxt_setup_resp.ue_key"
-    bitwidth: 32
-    match_type: EXACT
-  }
-  action_refs {
-    id: 16827797
-  }
-  action_refs {
-    id: 16800567
-  }
-  size: 2048
-}
-tables {
-  preamble {
     id: 33559893
     name: "c_egress.ctxt_release_uekey_sgwteid_map"
     alias: "ctxt_release_uekey_sgwteid_map"
@@ -277,30 +237,6 @@ actions {
   params {
     id: 1
     name: "guti"
-    bitwidth: 32
-  }
-}
-actions {
-  preamble {
-    id: 16803908
-    name: "c_ingress.populate_service_req_uekey_sgwteid_map"
-    alias: "populate_service_req_uekey_sgwteid_map"
-  }
-  params {
-    id: 1
-    name: "sgwteid"
-    bitwidth: 32
-  }
-}
-actions {
-  preamble {
-    id: 16827797
-    name: "c_ingress.populate_ctxt_setup_uekey_sgwteid_map"
-    alias: "populate_ctxt_setup_uekey_sgwteid_map"
-  }
-  params {
-    id: 1
-    name: "sgwteid"
     bitwidth: 32
   }
 }

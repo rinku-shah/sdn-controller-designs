@@ -281,31 +281,50 @@ control c_ingress(inout headers hdr,
                     // we use I2E_CLONE_SESSION_ID = 500 and set the out port as 1 in egress pipeline to reply back to RAN
                     //@rinku:co-offload
                     //clone3(CloneType.I2E, I2E_CLONE_SESSION_ID, standard_metadata);
+			
+			//standard_metadata.egress_spec = CPU_PORT;
+                        // Packets sent to the controller needs to be prepended with the
+                        // packet-in header. By setting it valid we make sure it will be
+                        // deparsed on the wire (see c_deparser).
+                        //hdr.packet_in.setValid();
+                        //hdr.packet_in.ingress_port = standard_metadata.ingress_port;
+                        //hdr.packet_in.reason_code = 50;
 
                     // handle context release message 
                     if(hdr.data.epc_traffic_code == 14){
                         // send the original packet back to RAN by appending the reply packet
-
                         standard_metadata.egress_spec = CPU_PORT;
                         // Packets sent to the controller needs to be prepended with the
                         // packet-in header. By setting it valid we make sure it will be
                         // deparsed on the wire (see c_deparser).
                         hdr.packet_in.setValid();
                         hdr.packet_in.ingress_port = standard_metadata.ingress_port;
-						            hdr.packet_in.reason_code = 50;
-                        // return;
+			hdr.packet_in.reason_code = 50;
+                        //return;
                     }
-
-                    else if(hdr.data.epc_traffic_code == 17){
+		    else if(hdr.data.epc_traffic_code == 17){
                         // send the original packet to local onos by appending the sgw_teid field
-                        service_req_uekey_sgwteid_map.apply();
-                        // return;
+                        //service_req_uekey_sgwteid_map.apply();
+                        standard_metadata.egress_spec = CPU_PORT;
+                        // Packets sent to the controller needs to be prepended with the
+                        // packet-in header. By setting it valid we make sure it will be
+                        // deparsed on the wire (see c_deparser).
+                        hdr.packet_in.setValid();
+                        hdr.packet_in.ingress_port = standard_metadata.ingress_port;
+                        hdr.packet_in.reason_code = 50;
+                        //return;
                     }
-
-                    else if(hdr.data.epc_traffic_code == 19){
+		    else if(hdr.data.epc_traffic_code == 19){
                         // send the original packet to local onos by appending the sgw_teid field
-                        ctxt_setup_uekey_sgwteid_map.apply();
-                        // return;
+                        //ctxt_setup_uekey_sgwteid_map.apply();
+                        standard_metadata.egress_spec = CPU_PORT;
+                        // Packets sent to the controller needs to be prepended with the
+                        // packet-in header. By setting it valid we make sure it will be
+                        // deparsed on the wire (see c_deparser).
+                        hdr.packet_in.setValid();
+                        hdr.packet_in.ingress_port = standard_metadata.ingress_port;
+                        hdr.packet_in.reason_code = 50;
+                        //return;
                     }
                     
           }

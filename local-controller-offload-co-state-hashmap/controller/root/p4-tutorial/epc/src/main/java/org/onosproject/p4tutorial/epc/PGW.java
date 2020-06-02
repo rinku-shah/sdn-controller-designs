@@ -157,8 +157,8 @@ public class PGW  {
 			}else{
 				this.ip[chainId] = reusable_ips[chainId].remove();
 				if(Constants.DEBUG){
-					log.warn("PGW reusing IP = {}",ip);
-					log.warn(" numips = ",numIps);
+					System.out.println("PGW reusing IP = " + ip);
+					System.out.println(" numips - " + numIps);
 				}
 			}
 		} catch (Exception e) {

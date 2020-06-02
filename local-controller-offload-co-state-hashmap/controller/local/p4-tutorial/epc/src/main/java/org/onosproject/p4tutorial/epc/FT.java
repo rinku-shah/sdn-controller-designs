@@ -54,6 +54,7 @@ public class FT{
 	public static ConcurrentHashMap<String, String> uekey_ueip_map = new ConcurrentHashMap<String, String>();
 	public static ConcurrentHashMap<String, String> ue_state = new ConcurrentHashMap<String, String>();	// Key: UE_Key, Value: State (TRUE: Active, FALSE: Idle)
 	public static ConcurrentHashMap<String, String> SGW_PGW_TEID_MAP = new ConcurrentHashMap<String, String>();
+	public static ConcurrentHashMap<String, String> uekey_guti_map = new ConcurrentHashMap<String, String>();
 //	private static ConcurrentHashMap<String, TransportPort> uekey_udp_src_port_map = new ConcurrentHashMap<String, TransportPort>(); // key = ue key, Value = UE UDP port number
 
 	static Long putCount=(long) 0;
@@ -142,8 +143,9 @@ public class FT{
 			if(Constants.DEBUG) {
 				log.warn("msgId = {}", msgId);
 				log.warn("received tmpStore = {}", tmpStore);
+				log.warn("mapName= {} key= {} value= {}",mapName,key,val);
 			}
-//			String tmpStore = "storeEPC1"; // for now hardcoding it
+			tmpStore = "storeEPC1"; // for now hardcoding it
 			StringBuilder k = new StringBuilder();
 			k.append(tmpStore).append(Constants.STOREKEYSEPARATOR).append(key);
 			if(mapName.equals("uekey_sgw_teid_map")){
@@ -164,6 +166,9 @@ public class FT{
 					log.warn(" in SGW_PGW_TEID_MAP put val  = {}", val);
 				}
 				SGW_PGW_TEID_MAP.put(k.toString(),val);
+			}
+			else if(mapName.equals("uekey_guti_map")){
+				uekey_guti_map.put(k.toString(),val);
 			}
 		}
 		else {
@@ -207,7 +212,7 @@ public class FT{
 		//if(Constants.CENTRALIZED && !Constants.MIGRATING){
 			//getCount++;
 			String tmpStore = FT.getStoreNameFromDGW(dgwDpId);
-//			String tmpStore = "storeEPC1"; // for now hardcoding it
+			tmpStore = "storeEPC1"; // for now hardcoding it
 			StringBuilder k = new StringBuilder();
 			k.append(tmpStore).append(Constants.STOREKEYSEPARATOR).append(key);
 
@@ -230,6 +235,9 @@ public class FT{
 				}
 				val = SGW_PGW_TEID_MAP.get(k.toString());
 //				log.warn("val in get = {}",val);
+			}
+			else if(mapName.equals("uekey_guti_map")){
+				val = uekey_guti_map.get(k.toString());
 			}
 //			if(val != null){
 				return val;
@@ -285,6 +293,7 @@ public class FT{
 		if(Constants.CENTRALIZED){
 			//String val="none";
 			String tmpStore = FT.getStoreNameFromDGW(dgwDpId);
+			tmpStore = "storeEPC1"; // for now hardcoding it
 			StringBuilder k = new StringBuilder();
 			k.append(tmpStore).append(Constants.STOREKEYSEPARATOR).append(key);
 
@@ -306,6 +315,9 @@ public class FT{
 //					log.warn(" in SGW_PGW_TEID_MAP put val  = {}", val);
 				}
 				SGW_PGW_TEID_MAP.remove(k.toString());
+			}
+			else if(mapName.equals("uekey_guti_map")){
+				uekey_guti_map.remove(k.toString());
 			}
 		}
 //		else {
@@ -648,7 +660,9 @@ public class FT{
 		String swid1 = "";
 		if(dgw.charAt(0)=='s'){
 			// means we get "s1", "s11" like switch numbers
-			log.warn("got switch name ={}",dgw);
+			if(Constants.DEBUG){
+				log.warn("got switch name ={}",dgw);
+			}	
 			swid1=dgw.split("s")[1];
 
 		}

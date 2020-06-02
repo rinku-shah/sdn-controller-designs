@@ -1,6 +1,6 @@
 /*
  * Copyright 2017-present Open Networking Foundation
- *
+ **
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -272,7 +272,7 @@ public class EpcApp {
         SGW sgw = new SGW();
         FT ft = new FT();
         FR fr = new FR();
-        OnlineDesignAdaptation online = new OnlineDesignAdaptation();
+        public OnlineDesignAdaptation online = new OnlineDesignAdaptation();
 
         int uePort = Constants.DEFAULT_SWITCH_UE_PORT;
 
@@ -945,7 +945,7 @@ public class EpcApp {
                         //fr.populate_uekey_sgwteid_map(false,appId,flowRuleService,offload_SGWswitchName1,Integer.parseInt(tmpArray[2]),sgw_teid);
                         //Populate state at local controllers instead of switch
                         //sendState(dgw_dpId, action (DEL/PUT), map_Name, key, value) //even delete is considered put
-                        sendState(dgw_dpId, "PUT", "uekey_sgwteid_map", Integer.parseInt(tmpArray[2]), sgw_teid);
+                        sendState(dgw_dpId, "PUT", "uekey_sgw_teid_map", Integer.parseInt(tmpArray[2]), sgw_teid);
 
 //                        sendPacket(sw, inPort, destMac, sourceMac, dstIp, srcIp,  IpProtocol.UDP, dstPort, srcPort, response.toString());
                         build_response_pkt(connectPoint,srcMac,dstMac,ipv4Protocol,ipv4SourceAddress,udp_dstport,udp_srcport,response.toString());
@@ -1056,7 +1056,7 @@ public class EpcApp {
                         //fr.populate_uekey_guti_map(false,appId,flowRuleService,offload_SGWswitchName2,Integer.parseInt(tmpArray[2]),(Integer.parseInt(tmpArray[2])+1000));
                         //Populate state at local controllers instead of switch
                         //sendState(dgw_dpId, action (DEL/PUT), map_Name, key, value) //even delete is considered put
-                        sendState(dgw_dpId1, "PUT", "uekey_uestate_map", Integer.parseInt(tmpArray[2]), ue_state);
+                        sendState(dgw_dpId1, "PUT", "ue_state", Integer.parseInt(tmpArray[2]), ue_state);
                         sendState(dgw_dpId1, "PUT", "uekey_guti_map", Integer.parseInt(tmpArray[2]), (Integer.parseInt(tmpArray[2])+1000));
 
                         response.append(Constants.ATTACH_ACCEPT).append(Constants.SEPARATOR).append(Integer.parseInt(tmpArray[2])+1000);	// Sending GUTI
@@ -1226,9 +1226,9 @@ public class EpcApp {
                             
                             //Populate state at local controllers instead of switch
                             //sendState(dgw_dpId, action (DEL/PUT), map_Name, key, value) //even delete is considered put
-                            sendState(dw, "DEL", "uekey_uestate_map", Integer.parseInt(tmpArray[4]), 0);
+                            sendState(dw, "DEL", "ue_state", Integer.parseInt(tmpArray[4]), 0);
                             sendState(dw, "DEL", "uekey_guti_map", Integer.parseInt(tmpArray[4]), 0);
-                            sendState(dw, "DEL", "uekey_sgwteid_map", Integer.parseInt(tmpArray[4]), 0);
+                            sendState(dw, "DEL", "uekey_sgw_teid_map", Integer.parseInt(tmpArray[4]), 0);
 
                             build_response_pkt(connectPoint,srcMac,dstMac,ipv4Protocol,ipv4SourceAddress,udp_dstport,udp_srcport,response.toString());
 
@@ -1628,11 +1628,11 @@ public class EpcApp {
             sb.append(dgw_dpId).append(Constants.STOREKEYSEPARATOR);
             sb.append(action).append(Constants.STOREKEYSEPARATOR);
             sb.append(map_Name).append(Constants.STOREKEYSEPARATOR);
-            sb.append(Interger.toString(key)).append(Constants.STOREKEYSEPARATOR);
+            sb.append(Integer.toString(key)).append(Constants.STOREKEYSEPARATOR);
             sb.append(Integer.toString(value)).append(Constants.STOREKEYSEPARATOR);
             //msg=dgw_dpId @@ PUT/DEL @@ map_name @@ key @@ value
             String msg = sb.toString();
-            online.sendPacket(dgw_dpId, msg);
+            online.sendPacketRemote(dgw_dpId, msg);
         }
 
         // Used for measuring execution time of procedures; uncomment it if needed for debugging purpose
