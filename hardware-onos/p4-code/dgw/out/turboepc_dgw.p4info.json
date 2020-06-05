@@ -1,0 +1,180 @@
+{
+ "tables": [
+  {
+   "preamble": {
+    "id": 33563157,
+    "name": "ip_op_tun_s1_uplink",
+    "alias": "ip_op_tun_s1_uplink"
+   },
+   "matchFields": [
+    {
+     "id": 1,
+     "name": "hdr.tmpreg.srcAddr",
+     "bitwidth": 32,
+     "matchType": "EXACT"
+    },
+    {
+     "id": 2,
+     "name": "hdr.tmpreg.dstAddr",
+     "bitwidth": 32,
+     "matchType": "EXACT"
+    }
+   ],
+   "actionRefs": [
+    {
+     "id": 16813343
+    },
+    {
+     "id": 16800567
+    }
+   ],
+   "size": "65000"
+  },
+  {
+   "preamble": {
+    "id": 33595558,
+    "name": "tun_egress_s3_uplink",
+    "alias": "tun_egress_s3_uplink"
+   },
+   "matchFields": [
+    {
+     "id": 1,
+     "name": "hdr.tmpreg.ue_key",
+     "bitwidth": 32,
+     "matchType": "EXACT"
+    }
+   ],
+   "actionRefs": [
+    {
+     "id": 16786285
+    },
+    {
+     "id": 16800567
+    }
+   ],
+   "size": "65000"
+  },
+  {
+   "preamble": {
+    "id": 33617978,
+    "name": "arp_tbl",
+    "alias": "arp_tbl"
+   },
+   "matchFields": [
+    {
+     "id": 1,
+     "name": "standard_metadata.ingress_port",
+     "bitwidth": 16,
+     "matchType": "EXACT"
+    }
+   ],
+   "actionRefs": [
+    {
+     "id": 16805069
+    },
+    {
+     "id": 16796765
+    },
+    {
+     "id": 16800567,
+     "annotations": [
+      "@defaultonly()"
+     ]
+    }
+   ],
+   "size": "4096"
+  }
+ ],
+ "actions": [
+  {
+   "preamble": {
+    "id": 16800567,
+    "name": "NoAction",
+    "alias": "NoAction"
+   }
+  },
+  {
+   "preamble": {
+    "id": 16813343,
+    "name": "populate_ip_op_tun_s1_uplink",
+    "alias": "populate_ip_op_tun_s1_uplink"
+   },
+   "params": [
+    {
+     "id": 1,
+     "name": "egress_port_s1",
+     "bitwidth": 32
+    }
+   ]
+  },
+  {
+   "preamble": {
+    "id": 16786285,
+    "name": "populate_tun_egress_s3_uplink",
+    "alias": "populate_tun_egress_s3_uplink"
+   },
+   "params": [
+    {
+     "id": 1,
+     "name": "egress_port_s3",
+     "bitwidth": 32
+    }
+   ]
+  },
+  {
+   "preamble": {
+    "id": 16805069,
+    "name": "fwd_act",
+    "alias": "fwd_act"
+   },
+   "params": [
+    {
+     "id": 1,
+     "name": "prt",
+     "bitwidth": 16
+    }
+   ]
+  },
+  {
+   "preamble": {
+    "id": 16796765,
+    "name": "drop_act",
+    "alias": "drop_act"
+   }
+  }
+ ],
+ "controllerPacketMetadata": [
+  {
+   "preamble": {
+    "id": 2868941301,
+    "name": "packet_in",
+    "annotations": [
+     "@controller_header(\"packet_in\")"
+    ]
+   },
+   "metadata": [
+    {
+     "id": 1,
+     "name": "ingress_port",
+     "bitwidth": 16
+    }
+   ]
+  },
+  {
+   "preamble": {
+    "id": 2868916615,
+    "name": "packet_out",
+    "annotations": [
+     "@controller_header(\"packet_out\")"
+    ]
+   },
+   "metadata": [
+    {
+     "id": 1,
+     "name": "egress_port",
+     "bitwidth": 16
+    }
+   ]
+  }
+ ]
+}
