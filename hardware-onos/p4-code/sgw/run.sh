@@ -1,0 +1,7 @@
+python2 jsongen_ctxt_release_uekey_sgwteid_map.py 
+#python2 jsongen_ip_op_tun_s2_uplink.py
+python2 jsongen_uekey_uestate.py
+#python2 jsongen_ctxt_setup_uekey_sgwteid_map.py 
+python2 jsongen_service_req_uekey_sgwteid_map.py
+python2 jsongen_ip_op_tun_s2_downlink.py
+python2 jsongen_uekey_guti.py
