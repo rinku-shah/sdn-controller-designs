@@ -136,7 +136,7 @@ public:
 
         double timeout = 10000; //500000; //timeout value in us
         bool timeoutFlag=false; // Flag =true if read timedout for non-offloadable messages
-        double timeoutOff = 2000; //timeout value in us
+        double timeoutOff = 2000; //2000; //timeout value in us
         bool timeoutFlagOff=false; // Flag =true if read timedout for offloadable messages
 
     // Constructor
