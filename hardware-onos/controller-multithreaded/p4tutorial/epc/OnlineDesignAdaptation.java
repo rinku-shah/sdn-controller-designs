@@ -266,14 +266,22 @@ class OnlineThread implements Runnable {
 	//	}
 		//int port = ue_num + 2000;
 		int index = 0;
-		if(ue_num < 151)
+		/*if(ue_num < 151)
 			index = ue_num - Constants.START_UE_1; //index from 0 to 49
 		else if((ue_num >= 151) && (ue_num < 201)) 
 			index = ue_num - Constants.START_UE_2 + 50; //index from 50 to 99
 		else if((ue_num >= 201) && (ue_num < 251))
                         index = ue_num - Constants.START_UE_3 + 100; //index from 100 to 149
 		else if((ue_num >= 251) && (ue_num < 301))
-                        index = ue_num - Constants.START_UE_4 + 150; //index from 150 to 199
+                        index = ue_num - Constants.START_UE_4 + 150; //index from 150 to 199*/
+		if(ue_num < 126)
+                        index = ue_num - Constants.START_UE_1; //index from 0 to 24
+                else if((ue_num >= 126) && (ue_num < 151))
+                        index = ue_num - Constants.START_UE_2 + 25; //index from 25 to 49
+                else if((ue_num >= 151) && (ue_num < 176))
+                        index = ue_num - Constants.START_UE_3 + 50; //index from 50 to 74
+                else if((ue_num >= 176) && (ue_num < 201))
+                        index = ue_num - Constants.START_UE_4 + 75; //index from 75 to 99
 		if(Constants.DEBUG)
 			log.info("send socket index = {} for ue_num= {}", index, ue_num);
 

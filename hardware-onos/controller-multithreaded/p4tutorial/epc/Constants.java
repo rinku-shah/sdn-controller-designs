@@ -49,9 +49,9 @@ public class Constants {
 	static float ThrCENTtoREMOTE = (float) 2200; //2200; //2400
 	
 	static final int START_UE_1 = 101;
-	static final int START_UE_2 = 151;
-	static final int START_UE_3 = 201;
-	static final int START_UE_4 = 251;
+	static final int START_UE_2 = 126; //151;
+	static final int START_UE_3 = 151; //201;
+	static final int START_UE_4 = 176; //251;
 	final static String UDP_PORT = "5001"; //listening port for UDP packets
 	final static String UDP_PORT_1 = "5002"; //listening port for UDP packets
 	final static String UDP_PORT_2 = "5003"; //listening port for UDP packets
