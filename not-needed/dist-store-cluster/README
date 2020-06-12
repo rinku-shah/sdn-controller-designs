@@ -11,7 +11,31 @@ echo "Creating local cluster configs for IP $IP from config at $ONOS_HOME ..."
     }
 EOF
 ------------- END -------
+TRIAL
 
+   {
+      "name": "cluster1",
+      "nodes": [ {"id": "192.168.100.100"} ],
+      "partitions": [ { "id": 1, "members": [ "192.168.100.100" ] } ]
+    }
+    {
+      "name": "cluster2",
+      "nodes": [ {"id": "192.168.100.102"} ],
+      "partitions": [ { "id": 2, "members": [ "192.168.100.102" ] } ]
+    }
+    {
+      "name": "cluster3",
+      "nodes": [ {"id": "192.168.100.103"} ],
+      "partitions": [ { "id": 3, "members": [ "192.168.100.103" ] } ]
+    }
+    {
+      "name": "cluster4",
+      "nodes": [ {"id": "192.168.100.104"} ],
+      "partitions": [ { "id": 4, "members": [ "192.168.100.104" ] } ]
+    }
+EOF
+
+-------------
 2. cd onos ; ./run_onos.sh
 3. add all switches to the controllers
 4. activate the app; on activation the consistent maps will synchronize
