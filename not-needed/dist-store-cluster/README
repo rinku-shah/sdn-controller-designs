@@ -56,8 +56,8 @@ R2, R3, R4: runs modified P4RuntimeClientImplementation.java and P4RuntimeFlowPr
           : modified P4RuntimeClientImplementation.java has election id 64,73,82 to avoid overlap for PGW (R1 starts with election id =3, with every switch connection election id is incremented by 3.
 --
 Connect all devices to root1: Actual ones are DGW1, SGW1, PGW. (use python con.py) 
-                            : Then connect DGW2, DGW3, SGW2, SGW3, DGW4, SGW4. (use python hori_con.py)
-Connect devices to R-i: DGWi, SGWi, PGW (use python con.py)
+                            : Then connect DGW2, DGW3, SGW2, SGW3, DGW4, SGW4. (use python hori_con2.py)
+Connect devices to R-i (i=2 to 4): DGWi, SGWi, PGW (use python hori_con2.py)
 ----
 Activate the application: onos localhost
                            app activate ...
