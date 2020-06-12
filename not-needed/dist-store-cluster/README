@@ -1,0 +1,49 @@
+Devices: DGW1, DGW2, DGW3, DGW4, SGW1, SGW2, SGW3, SGW4, PGW
+Controller: R1, R2, R3, R4 
+--
+R1: runs original P4RuntimeClientImplementation.java and P4RuntimeFlowProgrammable.java
+R2, R3, R4: runs modified P4RuntimeClientImplementation.java and P4RuntimeFlowProgrammable.java
+          : modified P4RuntimeClientImplementation.java has election id 64,73,82 to avoid overlap for PGW (R1 starts with election id =3, with every switch connection election id is incremented by 3.
+--
+Connect all devices to root1: Actual ones are DGW1, SGW1, PGW. (use python con.py) 
+                            : Then connect DGW2, DGW3, SGW2, SGW3, DGW4, SGW4. (use python hori_con.py)
+Connect devices to R-i: DGWi, SGWi, PGW (use python con.py)
+----
+Activate the application: onos localhost
+                           app activate ...
+                           ----------------DONE---------------
+-----------------
+Prepare for libraries
+1. Open ~/onos/lib/deps.json
+2. add to artifacts 
+  "artifacts": {
+    "redis":"mvn:redis.clients:jedis:2.9.0",
+    "mysql":"mvn:mysql:mysql-connector-java:5.1.35",
+    "io.lettuce":"mvn:io.lettuce:lettuce-core:5.0.4.RELEASE",
+    ...
+-------
+Horizontal EPC
+    This is a 1 chain experiment with DGW, SGW and PGW connected to root ONOS controller
+    RUN steps:
+    1. on the base machine, create all bridges using the ~/bridge_init.sh script
+    2. start the containers using the container start script
+    3. ssh into all the containers on terminator using 10.0.3.* IPs (deafult username:ubuntu passworsd:ubuntu)
+    4. on the root container :
+        a. cd ~/onos 
+        b. ./run_onos.sh
+    5. To connect the individual switches to root, follow thses steps:
+        a. cd ~/scripts
+        b. ./run_switch_wo_log.sh // this will start the bmv2 switches
+    6. once all the switches are started, we need to connect them to root controller in specific order 
+       to connect to root controller go to terminal of each switch and run the following commands
+        a. cd ~/scripts
+        b. python con.py  // this will connect the switch to the root controller  
+       Repeat steps 6a and 6b for all the switches in this order: DGW,SGW,PGW
+    7. once all the switches are connected to root contoller, bring up the onos CLI and activate epc app at the root controller terminal using the steps below:
+       a. cd ~
+       b. onos localhost
+       c. onos cli> app activate org.onosproject.p4tutorial.epc
+    8. To start the ran Load Generator go to ran container terminal 
+       a. cd ran_code/clone_bitwise_lg
+       b. make
+       c. sudo ./ran 1 1 0k // this will run ran for 1 thread for 1 minute
