@@ -1,3 +1,22 @@
+########### TO ADD CONTROLLER NODES TO THE CLUSTER ###########
+1. Modify "onos/tools/package/onos-run-karaf" file in all controller nodes with cluster configuration as follows-
+------- START---------
+echo "Creating local cluster configs for IP $IP from config at $ONOS_HOME ..."
+    [ -d $ONOS_HOME/config ] || mkdir -p $ONOS_HOME/config
+    cat > $ONOS_HOME/config/cluster.json <<-EOF
+    {
+      "name": "default",
+      "nodes": [ {"id": "192.168.100.100", "ip": "192.168.100.100", "port": 9876 }, {"id": "192.168.100.102", "ip": "192.168.100.102", "port": 9876 }, {"id": "192.168.100.103", "ip": "192.168.100.103", "port": 9876 }, {"id": "192.168.100.104", "ip": "192.168.100.104", "port": 9876 } ],
+      "partitions": [ { "id": 1, "members": [ "192.168.100.100" ] }, { "id": 2, "members": [ "192.168.100.102" ] }, { "id": 3, "members": [ "192.168.100.103" ] }, { "id": 4, "members": [ "192.168.100.104" ] } ]
+    }
+EOF
+------------- END -------
+
+2. cd onos ; ./run_onos.sh
+3. add all switches to the controllers
+4. activate the app; on activation the consistent maps will synchronize
+NOTE: before activation you can see some exceptions; ignore them
+###################################################################
 Devices: DGW1, DGW2, DGW3, DGW4, SGW1, SGW2, SGW3, SGW4, PGW
 Controller: R1, R2, R3, R4 
 --
@@ -13,6 +32,7 @@ Activate the application: onos localhost
                            app activate ...
                            ----------------DONE---------------
 -----------------
+#####################
 Prepare for libraries
 1. Open ~/onos/lib/deps.json
 2. add to artifacts 
@@ -21,7 +41,7 @@ Prepare for libraries
     "mysql":"mvn:mysql:mysql-connector-java:5.1.35",
     "io.lettuce":"mvn:io.lettuce:lettuce-core:5.0.4.RELEASE",
     ...
--------
+###################
 Horizontal EPC
     This is a 1 chain experiment with DGW, SGW and PGW connected to root ONOS controller
     RUN steps:
