@@ -50,8 +50,8 @@ public class KV {
 
 	public KV() {
 		try{
-			r = new nl.melp.redis.Redis(new Socket("192.168.100.101", 6379));
-			nl.melp.redis.Redis r = new nl.melp.redis.Redis(new Socket("192.168.100.101", 6379));
+			r = new nl.melp.redis.Redis(new Socket(Constants.REDIS_IP, Constants.REDIS_PORT));
+			nl.melp.redis.Redis r = new nl.melp.redis.Redis(new Socket(Constants.REDIS_IP, Constants.REDIS_PORT));
 			r.call("FLUSHALL");
 
 			for(int i=1; i<=10; i++){
