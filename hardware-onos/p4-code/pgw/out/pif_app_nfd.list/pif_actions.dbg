@@ -1,0 +1,368 @@
+.%scope file "/opt/netronome/p4/components/nfp_pif/me/apps/pif_app_nfd/include/config.h"
+.%scope function multiply_24x8 _multiply_24x8 "/opt/netronome/p4/components/nfp_pif/me/lib/pif/include/pif_common.h" 62 77
+.%arg x 0 x_429_V$5d1
+.%arg y 0 y_429_V$5d2
+.%var result 0 result_429 LIX
+.%scope end
+.%var nfp_cls_autopush_user_event 1 _nfp_cls_autopush_user_event SEX
+.%var nfp_cls_autopush_user_event_status 2 _nfp_cls_autopush_user_event_status SEX
+.%var BLM_NBI8_BLQ0_EMU_QD_BASE 3 _BLM_NBI8_BLQ0_EMU_QD_BASE SEX
+.%var BLM_NBI8_BLQ0_EMU_Q_BASE 5 _BLM_NBI8_BLQ0_EMU_Q_BASE SEX
+.%var BLM_NBI8_BLQ1_EMU_QD_BASE 6 _BLM_NBI8_BLQ1_EMU_QD_BASE SEX
+.%var BLM_NBI8_BLQ1_EMU_Q_BASE 7 _BLM_NBI8_BLQ1_EMU_Q_BASE SEX
+.%var BLM_NBI8_BLQ2_EMU_QD_BASE 8 _BLM_NBI8_BLQ2_EMU_QD_BASE SEX
+.%var BLM_NBI8_BLQ2_EMU_Q_BASE 9 _BLM_NBI8_BLQ2_EMU_Q_BASE SEX
+.%var BLM_NBI8_BLQ3_EMU_QD_BASE 10 _BLM_NBI8_BLQ3_EMU_QD_BASE SEX
+.%var BLM_NBI8_BLQ3_EMU_Q_BASE 11 _BLM_NBI8_BLQ3_EMU_Q_BASE SEX
+.%var BLM_NBI8_BLQ0_EMU_EMEM0_BUFS_BASE 12 _BLM_NBI8_BLQ0_EMU_EMEM0_BUFS_BASE SEX
+.%var BLM_NBI8_BLQ0_BDSRAM_EMEM0_BUFS_BASE 13 _BLM_NBI8_BLQ0_BDSRAM_EMEM0_BUFS_BASE SEX
+.%var pif_pkt_info_spec 14 _pif_pkt_info_spec SEX
+.%var pkt_clone_destination 18 _pkt_clone_destination SEX
+.%var pif_act_stats 20 _pif_act_stats SEX
+.%scope function pif_action_exec_op _pif_action_exec_op "out/pif_actions.c" 570 612
+.%arg parrep 21 parrep_482_V$5d5
+.%arg _actdata 22 _actdata_482_V$5d6
+.%var opdata 23 opdata_482 LIX
+.%var ret 26 ret_482 LIX
+.%scope end
+.%scope function pif_action_exec_ingress__fwd_act _pif_action_exec_ingress__fwd_act "out/pif_actions.c" 20 65
+.%arg _pif_parrep 21 _pif_parrep_437_V$622
+.%arg _pif_actdatabuf 22 _pif_actdatabuf_437_V$623
+.%arg _pif_debug 0 _pif_debug_437_V$624
+.%var _pif_return 26 _pif_return_437 LIX
+.%var _pif_act_data 27 _pif_act_data_437 LIX
+.%var _pif_ctldata 31 _pif_ctldata_437 LIX
+.%var standard_metadata 33 standard_metadata_437 LIX
+.%scope block 27 49
+.%var temp0 0 temp0_438 LIX
+.%var temp1 0 temp1_438 LIX
+.%scope end
+.%scope end
+.%scope function pif_action_exec_ingress__drop_act _pif_action_exec_ingress__drop_act "out/pif_actions.c" 67 109
+.%arg _pif_parrep 21 _pif_parrep_440_V$63c
+.%arg _pif_actdatabuf 22 _pif_actdatabuf_440_V$63d
+.%arg _pif_debug 0 _pif_debug_440_V$63e
+.%var _pif_return 26 _pif_return_440 LIX
+.%var _pif_act_data 35 _pif_act_data_440 LIX
+.%var _pif_ctldata 31 _pif_ctldata_440 LIX
+.%scope block 73 95
+.%var temp0 0 temp0_441 LIX
+.%var temp1 0 temp1_441 LIX
+.%scope end
+.%scope end
+.%scope function pif_action_exec_ingress__act _pif_action_exec_ingress__act "out/pif_actions.c" 111 156
+.%arg _pif_parrep 21 _pif_parrep_443_V$64d
+.%arg _pif_actdatabuf 22 _pif_actdatabuf_443_V$64e
+.%arg _pif_debug 0 _pif_debug_443_V$64f
+.%var _pif_return 26 _pif_return_443 LIX
+.%var _pif_act_data 37 _pif_act_data_443 LIX
+.%var _pif_ctldata 31 _pif_ctldata_443 LIX
+.%var ingress__scalars 39 ingress__scalars_443 LIX
+.%scope block 118 140
+.%var temp0 0 temp0_444 LIX
+.%var temp1 0 temp1_444 LIX
+.%scope end
+.%scope end
+.%scope function pif_action_exec_ingress__populate_tun_egress_s3_uplink _pif_action_exec_ingress__populate_tun_egress_s3_uplink "out/pif_actions.c" 158 307
+.%arg _pif_parrep 21 _pif_parrep_446_V$65f
+.%arg _pif_actdatabuf 22 _pif_actdatabuf_446_V$660
+.%arg _pif_debug 0 _pif_debug_446_V$661
+.%var _pif_return 26 _pif_return_446 LIX
+.%var _pif_act_data 41 _pif_act_data_446 LIX
+.%var _pif_ctldata 31 _pif_ctldata_446 LIX
+.%var ipv4 44 ipv4_446 LIX
+.%var ethernet 46 ethernet_446 LIX
+.%var standard_metadata 33 standard_metadata_446 LIX
+.%var _pif_flc_val_calc_0 0 _pif_flc_val_calc_0_446 LIX
+.%scope block 168 190
+.%var temp0 0 temp0_447 LIX
+.%var temp1 0 temp1_447 LIX
+.%scope end
+.%scope block 204 213
+.%var _pif_flc_update_val 0 _pif_flc_update_val_450 LIX
+.%scope end
+.%scope block 221 266
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_0_register_6 0 pif_expression__expression_populate_tun_egress_s3_uplink_0_register_6_453 LIX
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_0_register_5 0 pif_expression__expression_populate_tun_egress_s3_uplink_0_register_5_453 LIX
+.%scope block 228 261
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_0_register_0 0 pif_expression__expression_populate_tun_egress_s3_uplink_0_register_0_454 LIX
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_0_register_1 0 pif_expression__expression_populate_tun_egress_s3_uplink_0_register_1_454 LIX
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_0_register_2 0 pif_expression__expression_populate_tun_egress_s3_uplink_0_register_2_454 LIX
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_0_register_3 0 pif_expression__expression_populate_tun_egress_s3_uplink_0_register_3_454 LIX
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_0_register_4 0 pif_expression__expression_populate_tun_egress_s3_uplink_0_register_4_454 LIX
+.%scope end
+.%scope end
+.%scope block 267 294
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_1_register_2 0 pif_expression__expression_populate_tun_egress_s3_uplink_1_register_2_457 LIX
+.%scope block 273 290
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_1_register_0 0 pif_expression__expression_populate_tun_egress_s3_uplink_1_register_0_458 LIX
+.%var pif_expression__expression_populate_tun_egress_s3_uplink_1_register_1 0 pif_expression__expression_populate_tun_egress_s3_uplink_1_register_1_458 LIX
+.%scope end
+.%scope end
+.%scope block 296 305
+.%var _pif_flc_update_val 0 _pif_flc_update_val_459 LIX
+.%scope end
+.%scope end
+.%scope function pif_action_exec_ingress__act_0 _pif_action_exec_ingress__act_0 "out/pif_actions.c" 309 354
+.%arg _pif_parrep 21 _pif_parrep_461_V$688
+.%arg _pif_actdatabuf 22 _pif_actdatabuf_461_V$689
+.%arg _pif_debug 0 _pif_debug_461_V$68a
+.%var _pif_return 26 _pif_return_461 LIX
+.%var _pif_act_data 48 _pif_act_data_461 LIX
+.%var _pif_ctldata 31 _pif_ctldata_461 LIX
+.%var ingress__scalars 39 ingress__scalars_461 LIX
+.%scope block 316 338
+.%var temp0 0 temp0_462 LIX
+.%var temp1 0 temp1_462 LIX
+.%scope end
+.%scope end
+.%scope function pif_action_exec_ingress__act_1 _pif_action_exec_ingress__act_1 "out/pif_actions.c" 356 410
+.%arg _pif_parrep 21 _pif_parrep_464_V$699
+.%arg _pif_actdatabuf 22 _pif_actdatabuf_464_V$69a
+.%arg _pif_debug 0 _pif_debug_464_V$69b
+.%var _pif_return 26 _pif_return_464 LIX
+.%var _pif_act_data 50 _pif_act_data_464 LIX
+.%var _pif_ctldata 31 _pif_ctldata_464 LIX
+.%var ingress__scalars 39 ingress__scalars_464 LIX
+.%var standard_metadata 33 standard_metadata_464 LIX
+.%scope block 364 386
+.%var temp0 0 temp0_465 LIX
+.%var temp1 0 temp1_465 LIX
+.%scope end
+.%scope end
+.%scope function pif_action_exec_ingress__act_2 _pif_action_exec_ingress__act_2 "out/pif_actions.c" 412 466
+.%arg _pif_parrep 21 _pif_parrep_468_V$6aa
+.%arg _pif_actdatabuf 22 _pif_actdatabuf_468_V$6ab
+.%arg _pif_debug 0 _pif_debug_468_V$6ac
+.%var _pif_return 26 _pif_return_468 LIX
+.%var _pif_act_data 52 _pif_act_data_468 LIX
+.%var _pif_ctldata 31 _pif_ctldata_468 LIX
+.%var ingress__scalars 39 ingress__scalars_468 LIX
+.%var standard_metadata 33 standard_metadata_468 LIX
+.%scope block 420 442
+.%var temp0 0 temp0_469 LIX
+.%var temp1 0 temp1_469 LIX
+.%scope end
+.%scope end
+.%scope function pif_action_exec_ingress__populate_ip_op_tun_s1_uplink _pif_action_exec_ingress__populate_ip_op_tun_s1_uplink "out/pif_actions.c" 468 568
+.%arg _pif_parrep 21 _pif_parrep_472_V$6bb
+.%arg _pif_actdatabuf 22 _pif_actdatabuf_472_V$6bc
+.%arg _pif_debug 0 _pif_debug_472_V$6bd
+.%var _pif_return 26 _pif_return_472 LIX
+.%var _pif_act_data 54 _pif_act_data_472 LIX
+.%var _pif_ctldata 31 _pif_ctldata_472 LIX
+.%var ipv4 44 ipv4_472 LIX
+.%var standard_metadata 33 standard_metadata_472 LIX
+.%var _pif_flc_val_calc_0 0 _pif_flc_val_calc_0_472 LIX
+.%scope block 477 499
+.%var temp0 0 temp0_473 LIX
+.%var temp1 0 temp1_473 LIX
+.%scope end
+.%scope block 511 520
+.%var _pif_flc_update_val 0 _pif_flc_update_val_475 LIX
+.%scope end
+.%scope block 528 555
+.%var pif_expression__expression_populate_ip_op_tun_s1_uplink_0_register_2 0 pif_expression__expression_populate_ip_op_tun_s1_uplink_0_register_2_478 LIX
+.%scope block 534 551
+.%var pif_expression__expression_populate_ip_op_tun_s1_uplink_0_register_0 0 pif_expression__expression_populate_ip_op_tun_s1_uplink_0_register_0_479 LIX
+.%var pif_expression__expression_populate_ip_op_tun_s1_uplink_0_register_1 0 pif_expression__expression_populate_ip_op_tun_s1_uplink_0_register_1_479 LIX
+.%scope end
+.%scope end
+.%scope block 557 566
+.%var _pif_flc_update_val 0 _pif_flc_update_val_480 LIX
+.%scope end
+.%scope end
+.%type U4
+.%type S4 {
+__reserved_16 0:16:16 0;
+source 0:4:12 0;
+type 0:0:4 0;
+}
+.%type S4 {
+__reserved_21 0:21:11 0;
+overflow 0:20:1 0;
+hwm 0:16:4 0;
+__reserved_12 0:12:4 0;
+read 0:8:4 0;
+__reserved_4 0:4:4 0;
+write 0:0:4 0;
+}
+.%type A16 4
+.%type U1
+.%type A32768 4
+.%type A16 4
+.%type A2048 4
+.%type A16 4
+.%type A2048 4
+.%type A16 4
+.%type A2048 4
+.%type A41943040 4
+.%type A10485760 4
+.%type S8 pif_pkt_specific{
+__unnamed 0 15;
+}
+.%type S8 {
+__unnamed 0 16;
+_raw 0 17;
+}
+.%type S8 {
+resv3 0:24:8 0;
+trunc_len 0:10:14 0;
+pkt_pl_off 0:0:10 0;
+calc_fld_bmsk 4 0;
+}
+.%type A8 0
+.%type S16 pkt_clone_destination{
+ctm_pkt_num 0 0;
+mu_ptr 8 19;
+}
+.%type U8
+.%type A64 19
+.%type P6 0
+.%type P2 0
+.%type P2 24
+.%type S4 pif_action_opdata{
+__unnamed 0 25;
+val32 0 0;
+}
+.%type S4 {
+reserved0 0:24:8 26;
+action_id 0:16:8 26;
+dbg_flags 0:8:8 26;
+actdata_cnt 0:0:8 26;
+}
+.%type I4
+.%type P2 28
+.%type S12 pif_action_actiondata_ingress__fwd_act{
+__pif_rule_no 0 0;
+__pif_table_no 4 0;
+__pif_padding 8 29;
+prt 10 30;
+}
+.%type A2 4
+.%type U2
+.%type P6 32
+.%type S8 pif_parrep_ctldata{
+valid 0:31:1 0;
+t0_valid 0:30:1 0;
+t0_dirty 0:29:1 0;
+t0_orig_len 0:28:1 0;
+t1_valid 0:27:1 0;
+t1_dirty 0:26:1 0;
+t1_orig_len 0:25:1 0;
+t2_valid 0:24:1 0;
+t2_dirty 0:23:1 0;
+t2_orig_len 0:22:1 0;
+t3_valid 0:21:1 0;
+t3_dirty 0:20:1 0;
+t3_orig_len 0:19:1 0;
+t4_valid 0:18:1 0;
+t4_dirty 0:17:1 0;
+t4_orig_len 0:16:1 0;
+t5_valid 0:15:1 0;
+t5_dirty 0:14:1 0;
+t5_orig_len 0:13:1 0;
+t6_valid 0:12:1 0;
+t6_type 0:8:4 0;
+t6_dirty 0:7:1 0;
+t6_orig_len 0:0:7 0;
+t7_valid 4:31:1 0;
+t7_dirty 4:30:1 0;
+t7_orig_len 4:29:1 0;
+t8_valid 4:28:1 0;
+t8_dirty 4:27:1 0;
+t8_orig_len 4:26:1 0;
+t9_valid 4:25:1 0;
+t9_dirty 4:24:1 0;
+t9_orig_len 4:23:1 0;
+t10_valid 4:22:1 0;
+t10_dirty 4:21:1 0;
+t10_orig_len 4:20:1 0;
+t11_valid 4:19:1 0;
+t11_dirty 4:18:1 0;
+t11_orig_len 4:17:1 0;
+}
+.%type P6 34
+.%type S16 pif_header_standard_metadata{
+clone_spec 0:0:32 0;
+egress_spec 4:16:16 0;
+egress_port 4:0:16 0;
+ingress_port 8:16:16 0;
+packet_length 8:2:14 0;
+checksum_error 8:1:1 0;
+_padding_0 8:0:1 0;
+egress_instance 12:22:10 0;
+parser_error_location 12:14:8 0;
+instance_type 12:10:4 0;
+parser_status 12:7:3 0;
+_padding_1 12:0:7 0;
+}
+.%type P2 36
+.%type S8 pif_action_actiondata_ingress__drop_act{
+__pif_rule_no 0 0;
+__pif_table_no 4 0;
+}
+.%type P2 38
+.%type S8 pif_action_actiondata_ingress__act{
+__pif_rule_no 0 0;
+__pif_table_no 4 0;
+}
+.%type P6 40
+.%type S4 pif_header_ingress__scalars{
+hasReturned_0 0:31:1 0;
+_padding_0 0:0:31 0;
+}
+.%type P2 42
+.%type S12 pif_action_actiondata_ingress__populate_tun_egress_s3_uplink{
+__pif_rule_no 0 0;
+__pif_table_no 4 0;
+__pif_padding 8 43;
+egress_port_s3 10 30;
+}
+.%type A2 4
+.%type P6 45
+.%type S20 pif_header_ipv4{
+version 0:28:4 0;
+ihl 0:24:4 0;
+diffserv 0:16:8 0;
+totalLen 0:0:16 0;
+identification 4:16:16 0;
+flags 4:13:3 0;
+fragOffset 4:0:13 0;
+ttl 8:24:8 0;
+protocol 8:16:8 0;
+hdrChecksum 8:0:16 0;
+srcAddr 12:0:32 0;
+dstAddr 16:0:32 0;
+}
+.%type P6 47
+.%type S16 pif_header_ethernet{
+dstAddr 0:0:32 0;
+__dstAddr_1 4:16:16 0;
+srcAddr 4:0:16 0;
+__srcAddr_1 8:0:32 0;
+etherType 12:16:16 0;
+}
+.%type P2 49
+.%type S8 pif_action_actiondata_ingress__act_0{
+__pif_rule_no 0 0;
+__pif_table_no 4 0;
+}
+.%type P2 51
+.%type S8 pif_action_actiondata_ingress__act_1{
+__pif_rule_no 0 0;
+__pif_table_no 4 0;
+}
+.%type P2 53
+.%type S8 pif_action_actiondata_ingress__act_2{
+__pif_rule_no 0 0;
+__pif_table_no 4 0;
+}
+.%type P2 55
+.%type S12 pif_action_actiondata_ingress__populate_ip_op_tun_s1_uplink{
+__pif_rule_no 0 0;
+__pif_table_no 4 0;
+__pif_padding 8 56;
+egress_port_s1 10 30;
+}
+.%type A2 4

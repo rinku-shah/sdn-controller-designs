@@ -1,0 +1,100 @@
+########### TO ADD CONTROLLER NODES TO THE CLUSTER ###########
+1. Modify "onos/tools/package/onos-run-karaf" file in all controller nodes with cluster configuration as follows-
+------- START---------
+echo "Creating local cluster configs for IP $IP from config at $ONOS_HOME ..."
+    [ -d $ONOS_HOME/config ] || mkdir -p $ONOS_HOME/config
+    cat > $ONOS_HOME/config/cluster.json <<-EOF
+    {
+      "name": "default",
+      "nodes": [ {"id": "192.168.100.100", "ip": "192.168.100.100", "port": 9876 }, {"id": "192.168.100.102", "ip": "192.168.100.102", "port": 9876 }, {"id": "192.168.100.103", "ip": "192.168.100.103", "port": 9876 }, {"id": "192.168.100.104", "ip": "192.168.100.104", "port": 9876 } ],
+      "partitions": [ { "id": 1, "members": [ "192.168.100.100" ] }, { "id": 2, "members": [ "192.168.100.102" ] }, { "id": 3, "members": [ "192.168.100.103" ] }, { "id": 4, "members": [ "192.168.100.104" ] } ]
+    }
+EOF
+------------- END -------
+TRIAL
+____________
+   {
+      "name": "default",
+      "nodes": [ {"id": "192.168.100.100", "ip": "192.168.100.100", "port": 9876 }, {"id": "192.168.100.102", "ip": "192.168.100.102", "port": 9876 }, {"id": "192.168.100.103", "ip": "192.168.100.103", "port": 9876 }, {"id": "192.168.100.104", "ip": "192.168.100.104", "port": 9876 } ],
+      "partitions": [ { "id": 1, "members": [ "192.168.100.100", "192.168.100.102", "192.168.100.103", "192.168.100.104" ] } ]
+    } 
+_____________
+
+   {
+      "name": "cluster1",
+      "nodes": [ {"id": "192.168.100.100"} ],
+      "partitions": [ { "id": 1, "members": [ "192.168.100.100" ] } ]
+    }
+    {
+      "name": "cluster2",
+      "nodes": [ {"id": "192.168.100.102"} ],
+      "partitions": [ { "id": 2, "members": [ "192.168.100.102" ] } ]
+    }
+    {
+      "name": "cluster3",
+      "nodes": [ {"id": "192.168.100.103"} ],
+      "partitions": [ { "id": 3, "members": [ "192.168.100.103" ] } ]
+    }
+    {
+      "name": "cluster4",
+      "nodes": [ {"id": "192.168.100.104"} ],
+      "partitions": [ { "id": 4, "members": [ "192.168.100.104" ] } ]
+    }
+EOF
+
+-------------
+2. cd onos ; ./run_onos.sh
+3. add all switches to the controllers
+4. activate the app; on activation the consistent maps will synchronize
+NOTE: before activation you can see some exceptions; ignore them
+###################################################################
+Devices: DGW1, DGW2, DGW3, DGW4, SGW1, SGW2, SGW3, SGW4, PGW
+Controller: R1, R2, R3, R4 
+--
+R1: runs original P4RuntimeClientImplementation.java and P4RuntimeFlowProgrammable.java
+R2, R3, R4: runs modified P4RuntimeClientImplementation.java and P4RuntimeFlowProgrammable.java
+          : modified P4RuntimeClientImplementation.java has election id 64,73,82 to avoid overlap for PGW (R1 starts with election id =3, with every switch connection election id is incremented by 3.
+--
+Connect all devices to root1: Actual ones are DGW1, SGW1, PGW. (use python con.py) 
+                            : Then connect DGW2, DGW3, SGW2, SGW3, DGW4, SGW4. (use python hori_con2.py)
+Connect devices to R-i (i=2 to 4): DGWi, SGWi, PGW (use python hori_con.py)
+----
+Activate the application: onos localhost
+                           app activate ...
+                           ----------------DONE---------------
+-----------------
+#####################
+Prepare for libraries
+1. Open ~/onos/lib/deps.json
+2. add to artifacts 
+  "artifacts": {
+    "redis":"mvn:redis.clients:jedis:2.9.0",
+    "mysql":"mvn:mysql:mysql-connector-java:5.1.35",
+    "io.lettuce":"mvn:io.lettuce:lettuce-core:5.0.4.RELEASE",
+    ...
+###################
+Horizontal EPC
+    This is a 1 chain experiment with DGW, SGW and PGW connected to root ONOS controller
+    RUN steps:
+    1. on the base machine, create all bridges using the ~/bridge_init.sh script
+    2. start the containers using the container start script
+    3. ssh into all the containers on terminator using 10.0.3.* IPs (deafult username:ubuntu passworsd:ubuntu)
+    4. on the root container :
+        a. cd ~/onos 
+        b. ./run_onos.sh
+    5. To connect the individual switches to root, follow thses steps:
+        a. cd ~/scripts
+        b. ./run_switch_wo_log.sh // this will start the bmv2 switches
+    6. once all the switches are started, we need to connect them to root controller in specific order 
+       to connect to root controller go to terminal of each switch and run the following commands
+        a. cd ~/scripts
+        b. python con.py  // this will connect the switch to the root controller  
+       Repeat steps 6a and 6b for all the switches in this order: DGW,SGW,PGW
+    7. once all the switches are connected to root contoller, bring up the onos CLI and activate epc app at the root controller terminal using the steps below:
+       a. cd ~
+       b. onos localhost
+       c. onos cli> app activate org.onosproject.p4tutorial.epc
+    8. To start the ran Load Generator go to ran container terminal 
+       a. cd ran_code/clone_bitwise_lg
+       b. make
+       c. sudo ./ran 1 1 0k // this will run ran for 1 thread for 1 minute

@@ -1,0 +1,358 @@
+.%scope file "/opt/netronome/p4/components/nfp_pif/me/apps/pif_app_nfd/include/config.h"
+.%scope function multiply_24x8 _multiply_24x8 "/opt/netronome/p4/components/nfp_pif/me/lib/pif/include/pif_common.h" 62 77
+.%arg x 0 x_349_V$610
+.%arg y 0 y_349_V$611
+.%var result 0 result_349 LIX
+.%scope end
+.%var BLM_NBI8_BLQ0_EMU_QD_BASE 1 _BLM_NBI8_BLQ0_EMU_QD_BASE SEX
+.%var BLM_NBI8_BLQ0_EMU_Q_BASE 3 _BLM_NBI8_BLQ0_EMU_Q_BASE SEX
+.%var BLM_NBI8_BLQ1_EMU_QD_BASE 4 _BLM_NBI8_BLQ1_EMU_QD_BASE SEX
+.%var BLM_NBI8_BLQ1_EMU_Q_BASE 5 _BLM_NBI8_BLQ1_EMU_Q_BASE SEX
+.%var BLM_NBI8_BLQ2_EMU_QD_BASE 6 _BLM_NBI8_BLQ2_EMU_QD_BASE SEX
+.%var BLM_NBI8_BLQ2_EMU_Q_BASE 7 _BLM_NBI8_BLQ2_EMU_Q_BASE SEX
+.%var BLM_NBI8_BLQ3_EMU_QD_BASE 8 _BLM_NBI8_BLQ3_EMU_QD_BASE SEX
+.%var BLM_NBI8_BLQ3_EMU_Q_BASE 9 _BLM_NBI8_BLQ3_EMU_Q_BASE SEX
+.%var BLM_NBI8_BLQ0_EMU_EMEM0_BUFS_BASE 10 _BLM_NBI8_BLQ0_EMU_EMEM0_BUFS_BASE SEX
+.%var BLM_NBI8_BLQ0_BDSRAM_EMEM0_BUFS_BASE 11 _BLM_NBI8_BLQ0_BDSRAM_EMEM0_BUFS_BASE SEX
+.%var pkt 12 _pkt SEX
+.%var pif_pkt_info_spec 21 _pif_pkt_info_spec SEX
+.%var pif_counter_OFFSET_TOO_LARGE_SHIFT 25 _pif_counter_OFFSET_TOO_LARGE_SHIFT SEX
+.%scope function handle_tier_0 _handle_tier_0 "out/pif_deparse.c" 14 81
+.%arg parrep 26 parrep_396_V$614
+.%arg pktinfo 27 pktinfo_396_V$615
+.%arg pkt_byteoff 28 pkt_byteoff_396_V$616
+.%arg pkt_min_off 0 pkt_min_off_396_V$617
+.%var ctldata 30 ctldata_396 LIX
+.%var orig_len 0 orig_len_396 LIX
+.%var curr_len 0 curr_len_396 LIX
+.%scope block 32 47
+.%var delta 0 delta_399 LIX
+.%scope end
+.%scope block 47 67
+.%var delta 0 delta_400 LIX
+.%var num_bytes 0 num_bytes_400 LIX
+.%var space_needed 29 space_needed_400 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_1 _handle_tier_1 "out/pif_deparse.c" 83 150
+.%arg parrep 26 parrep_404_V$642
+.%arg pktinfo 27 pktinfo_404_V$643
+.%arg pkt_byteoff 28 pkt_byteoff_404_V$644
+.%arg pkt_min_off 0 pkt_min_off_404_V$645
+.%var ctldata 30 ctldata_404 LIX
+.%var orig_len 0 orig_len_404 LIX
+.%var curr_len 0 curr_len_404 LIX
+.%scope block 101 116
+.%var delta 0 delta_407 LIX
+.%scope end
+.%scope block 116 136
+.%var delta 0 delta_408 LIX
+.%var num_bytes 0 num_bytes_408 LIX
+.%var space_needed 29 space_needed_408 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_2 _handle_tier_2 "out/pif_deparse.c" 152 219
+.%arg parrep 26 parrep_412_V$670
+.%arg pktinfo 27 pktinfo_412_V$671
+.%arg pkt_byteoff 28 pkt_byteoff_412_V$672
+.%arg pkt_min_off 0 pkt_min_off_412_V$673
+.%var ctldata 30 ctldata_412 LIX
+.%var orig_len 0 orig_len_412 LIX
+.%var curr_len 0 curr_len_412 LIX
+.%scope block 170 185
+.%var delta 0 delta_415 LIX
+.%scope end
+.%scope block 185 205
+.%var delta 0 delta_416 LIX
+.%var num_bytes 0 num_bytes_416 LIX
+.%var space_needed 29 space_needed_416 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_3 _handle_tier_3 "out/pif_deparse.c" 221 288
+.%arg parrep 26 parrep_420_V$69e
+.%arg pktinfo 27 pktinfo_420_V$69f
+.%arg pkt_byteoff 28 pkt_byteoff_420_V$6a0
+.%arg pkt_min_off 0 pkt_min_off_420_V$6a1
+.%var ctldata 30 ctldata_420 LIX
+.%var orig_len 0 orig_len_420 LIX
+.%var curr_len 0 curr_len_420 LIX
+.%scope block 239 254
+.%var delta 0 delta_423 LIX
+.%scope end
+.%scope block 254 274
+.%var delta 0 delta_424 LIX
+.%var num_bytes 0 num_bytes_424 LIX
+.%var space_needed 29 space_needed_424 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_4 _handle_tier_4 "out/pif_deparse.c" 290 357
+.%arg parrep 26 parrep_428_V$6cc
+.%arg pktinfo 27 pktinfo_428_V$6cd
+.%arg pkt_byteoff 28 pkt_byteoff_428_V$6ce
+.%arg pkt_min_off 0 pkt_min_off_428_V$6cf
+.%var ctldata 30 ctldata_428 LIX
+.%var orig_len 0 orig_len_428 LIX
+.%var curr_len 0 curr_len_428 LIX
+.%scope block 308 323
+.%var delta 0 delta_431 LIX
+.%scope end
+.%scope block 323 343
+.%var delta 0 delta_432 LIX
+.%var num_bytes 0 num_bytes_432 LIX
+.%var space_needed 29 space_needed_432 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_5 _handle_tier_5 "out/pif_deparse.c" 359 426
+.%arg parrep 26 parrep_436_V$6fa
+.%arg pktinfo 27 pktinfo_436_V$6fb
+.%arg pkt_byteoff 28 pkt_byteoff_436_V$6fc
+.%arg pkt_min_off 0 pkt_min_off_436_V$6fd
+.%var ctldata 30 ctldata_436 LIX
+.%var orig_len 0 orig_len_436 LIX
+.%var curr_len 0 curr_len_436 LIX
+.%scope block 377 392
+.%var delta 0 delta_439 LIX
+.%scope end
+.%scope block 392 412
+.%var delta 0 delta_440 LIX
+.%var num_bytes 0 num_bytes_440 LIX
+.%var space_needed 29 space_needed_440 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_6 _handle_tier_6 "out/pif_deparse.c" 428 536
+.%arg parrep 26 parrep_444_V$728
+.%arg pktinfo 27 pktinfo_444_V$729
+.%arg pkt_byteoff 28 pkt_byteoff_444_V$72a
+.%arg pkt_min_off 0 pkt_min_off_444_V$72b
+.%var ctldata 30 ctldata_444 LIX
+.%var orig_len 0 orig_len_444 LIX
+.%var curr_len 0 curr_len_444 LIX
+.%scope block 487 502
+.%var delta 0 delta_458 LIX
+.%scope end
+.%scope block 502 522
+.%var delta 0 delta_459 LIX
+.%var num_bytes 0 num_bytes_459 LIX
+.%var space_needed 29 space_needed_459 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_7 _handle_tier_7 "out/pif_deparse.c" 538 605
+.%arg parrep 26 parrep_463_V$756
+.%arg pktinfo 27 pktinfo_463_V$757
+.%arg pkt_byteoff 28 pkt_byteoff_463_V$758
+.%arg pkt_min_off 0 pkt_min_off_463_V$759
+.%var ctldata 30 ctldata_463 LIX
+.%var orig_len 0 orig_len_463 LIX
+.%var curr_len 0 curr_len_463 LIX
+.%scope block 556 571
+.%var delta 0 delta_466 LIX
+.%scope end
+.%scope block 571 591
+.%var delta 0 delta_467 LIX
+.%var num_bytes 0 num_bytes_467 LIX
+.%var space_needed 29 space_needed_467 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_8 _handle_tier_8 "out/pif_deparse.c" 607 674
+.%arg parrep 26 parrep_471_V$784
+.%arg pktinfo 27 pktinfo_471_V$785
+.%arg pkt_byteoff 28 pkt_byteoff_471_V$786
+.%arg pkt_min_off 0 pkt_min_off_471_V$787
+.%var ctldata 30 ctldata_471 LIX
+.%var orig_len 0 orig_len_471 LIX
+.%var curr_len 0 curr_len_471 LIX
+.%scope block 625 640
+.%var delta 0 delta_474 LIX
+.%scope end
+.%scope block 640 660
+.%var delta 0 delta_475 LIX
+.%var num_bytes 0 num_bytes_475 LIX
+.%var space_needed 29 space_needed_475 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_9 _handle_tier_9 "out/pif_deparse.c" 676 743
+.%arg parrep 26 parrep_479_V$7b2
+.%arg pktinfo 27 pktinfo_479_V$7b3
+.%arg pkt_byteoff 28 pkt_byteoff_479_V$7b4
+.%arg pkt_min_off 0 pkt_min_off_479_V$7b5
+.%var ctldata 30 ctldata_479 LIX
+.%var orig_len 0 orig_len_479 LIX
+.%var curr_len 0 curr_len_479 LIX
+.%scope block 694 709
+.%var delta 0 delta_482 LIX
+.%scope end
+.%scope block 709 729
+.%var delta 0 delta_483 LIX
+.%var num_bytes 0 num_bytes_483 LIX
+.%var space_needed 29 space_needed_483 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_10 _handle_tier_10 "out/pif_deparse.c" 745 812
+.%arg parrep 26 parrep_487_V$7e0
+.%arg pktinfo 27 pktinfo_487_V$7e1
+.%arg pkt_byteoff 28 pkt_byteoff_487_V$7e2
+.%arg pkt_min_off 0 pkt_min_off_487_V$7e3
+.%var ctldata 30 ctldata_487 LIX
+.%var orig_len 0 orig_len_487 LIX
+.%var curr_len 0 curr_len_487 LIX
+.%scope block 763 778
+.%var delta 0 delta_490 LIX
+.%scope end
+.%scope block 778 798
+.%var delta 0 delta_491 LIX
+.%var num_bytes 0 num_bytes_491 LIX
+.%var space_needed 29 space_needed_491 LIX
+.%scope end
+.%scope end
+.%scope function handle_tier_11 _handle_tier_11 "out/pif_deparse.c" 814 881
+.%arg parrep 26 parrep_495_V$80e
+.%arg pktinfo 27 pktinfo_495_V$80f
+.%arg pkt_byteoff 28 pkt_byteoff_495_V$810
+.%arg pkt_min_off 0 pkt_min_off_495_V$811
+.%var ctldata 30 ctldata_495 LIX
+.%var orig_len 0 orig_len_495 LIX
+.%var curr_len 0 curr_len_495 LIX
+.%scope block 832 847
+.%var delta 0 delta_498 LIX
+.%scope end
+.%scope block 847 867
+.%var delta 0 delta_499 LIX
+.%var num_bytes 0 num_bytes_499 LIX
+.%var space_needed 29 space_needed_499 LIX
+.%scope end
+.%scope end
+.%scope function pif_deparse _pif_deparse "out/pif_deparse.c" 883 956
+.%arg parrep 26 parrep_503_V$83c
+.%arg pktinfo 27 pktinfo_503_V$83d
+.%var pkt_byteoff 0 pkt_byteoff_503 LIX
+.%var pkt_min_off 0 pkt_min_off_503 LIX
+.%var ret 29 ret_503 LIX
+.%scope block 932 939
+.%var move_len 0 move_len_505 LIX
+.%scope end
+.%scope block 942 949
+.%var move_len 0 move_len_507 LIX
+.%scope end
+.%scope end
+.%type U4
+.%type A16 2
+.%type U1
+.%type A32768 2
+.%type A16 2
+.%type A2048 2
+.%type A16 2
+.%type A2048 2
+.%type A16 2
+.%type A2048 2
+.%type A41943040 2
+.%type A10485760 2
+.%type S28 pktio_meta{
+__unnamed 0 13;
+}
+.%type S28 {
+__unnamed 0 14;
+__raw 0 20;
+}
+.%type S28 {
+p_nbi 0 15;
+p_ctm_size 8:30:2 0;
+p_orig_len 8:16:14 0;
+p_offset 8:0:16 0;
+p_src 12:16:16 0;
+p_dst 12:0:16 0;
+p_seq 16:16:16 0;
+p_ro_ctx 16:11:5 0;
+p_is_gro_seq 16:10:1 0;
+p_rx_ipv4_csum_ok 16:9:1 0;
+p_rx_ipv4_csum_present 16:8:1 0;
+p_rx_l4_csum_ok 16:7:1 0;
+p_rx_l4_csum_present 16:6:1 0;
+p_rx_l4_tcp 16:5:1 0;
+p_rx_mac_matched 16:4:1 0;
+p_tunnel 16:3:1 0;
+resv4 16:0:3 0;
+__unnamed 20 19;
+p_vlan 24:16:16 0;
+resv3 24:0:16 0;
+}
+.%type S8 nbi_meta_pkt_info{
+__unnamed 0 16;
+}
+.%type S8 {
+__unnamed 0 17;
+__raw 0 18;
+}
+.%type S8 {
+isl 0:26:6 0;
+pnum 0:16:10 0;
+bls 0:14:2 0;
+len 0:0:14 0;
+split 4:31:1 0;
+resv0 4:29:2 0;
+muptr 4:0:29 0;
+}
+.%type A8 0
+.%type S4 {
+p_timestamp 0:0:32 0;
+}
+.%type A28 0
+.%type S8 pif_pkt_specific{
+__unnamed 0 22;
+}
+.%type S8 {
+__unnamed 0 23;
+_raw 0 24;
+}
+.%type S8 {
+resv3 0:24:8 0;
+trunc_len 0:10:14 0;
+pkt_pl_off 0:0:10 0;
+calc_fld_bmsk 4 0;
+}
+.%type A8 0
+.%type U8
+.%type P6 0
+.%type P2 12
+.%type P2 29
+.%type I4
+.%type P6 31
+.%type S8 pif_parrep_ctldata{
+valid 0:31:1 0;
+t0_valid 0:30:1 0;
+t0_dirty 0:29:1 0;
+t0_orig_len 0:28:1 0;
+t1_valid 0:27:1 0;
+t1_dirty 0:26:1 0;
+t1_orig_len 0:25:1 0;
+t2_valid 0:24:1 0;
+t2_dirty 0:23:1 0;
+t2_orig_len 0:22:1 0;
+t3_valid 0:21:1 0;
+t3_dirty 0:20:1 0;
+t3_orig_len 0:19:1 0;
+t4_valid 0:18:1 0;
+t4_dirty 0:17:1 0;
+t4_orig_len 0:16:1 0;
+t5_valid 0:15:1 0;
+t5_dirty 0:14:1 0;
+t5_orig_len 0:13:1 0;
+t6_valid 0:12:1 0;
+t6_type 0:8:4 0;
+t6_dirty 0:7:1 0;
+t6_orig_len 0:0:7 0;
+t7_valid 4:31:1 0;
+t7_dirty 4:30:1 0;
+t7_orig_len 4:29:1 0;
+t8_valid 4:28:1 0;
+t8_dirty 4:27:1 0;
+t8_orig_len 4:26:1 0;
+t9_valid 4:25:1 0;
+t9_dirty 4:24:1 0;
+t9_orig_len 4:23:1 0;
+t10_valid 4:22:1 0;
+t10_dirty 4:21:1 0;
+t10_orig_len 4:20:1 0;
+t11_valid 4:19:1 0;
+t11_dirty 4:18:1 0;
+t11_orig_len 4:17:1 0;
+}
