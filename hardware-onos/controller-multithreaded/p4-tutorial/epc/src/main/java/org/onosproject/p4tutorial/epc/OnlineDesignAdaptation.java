@@ -142,6 +142,7 @@ class OnlineThread implements Runnable {
                                 //clt[j]=new InterControllerClient(Constants.RAN_IP,2101);
                                 clt[j] = new InterControllerClient(Constants.RAN_IP,port);
                         }
+			clt1 = new InterControllerClient(Constants.RAN_IP,Constants.SWITCH_PORT); //connection to send rule packets to switch
                         log.info("Started UDP clients");
 		} catch (IOException e1) {
                         e1.printStackTrace();
@@ -264,6 +265,12 @@ class OnlineThread implements Runnable {
 				clt[j]=new InterControllerClient(Constants.RAN_IP,port);
 			}*/
 	//	}
+	//
+		if(receiverIP.equals("SWITCH")){
+			clt1.clientSend(data);
+		}
+		else 
+		{
 		//int port = ue_num + 2000;
 		int index = 0;
 		/*if(ue_num < 151)
@@ -286,6 +293,7 @@ class OnlineThread implements Runnable {
 			log.info("send socket index = {} for ue_num= {}", index, ue_num);
 
 		clt[index].clientSend(data);
+		}
 		/*switch(receiverIP){
 			case Constants.SGW_IP_1:
 				clt1.clientSend(data);
@@ -834,6 +842,14 @@ class OnlineThread implements Runnable {
 					
 					/* UPLINK   => ipv4srcAddr = UE IP and ipv4dstAddr = Sink IP   */
 					//fr.insertUplinkTunnelIngressRule(false, appId, flowRuleService, deviceId,UE_IPAddr, Constants.dstSinkIpAddr, sgw_teid, outPort);
+					//@rinku: send dummy rule packet to switch
+					try {
+                                                sendPacketToController("SWITCH", "rule", 101);
+                                        } catch (NumberFormatException e1) {
+                                                e1.printStackTrace();
+                                                } catch (IOException e1) {
+                                                        e1.printStackTrace();
+                                                }
 
 
 
@@ -958,6 +974,17 @@ class OnlineThread implements Runnable {
 //                      installFlowRule(DatapathId.of(Constants.getDgwDpid(DatapathId.of(tmpArray2[0]))),
 //                                                    Constants.ENODEB_SGW_PORT_MAP.get(Constants.getDgwDpid(DatapathId.of(tmpArray2[0])) + Constants.SEPARATOR + DatapathId.of(tmpArray2[0]).getLong()),
 //                                                    Integer.parseInt(tmpArray[1]), uePort, Integer.parseInt(tmpArray[1]), Constants.SINK_IP, ue_ip, Constants.getUeMac(send_ue_teid_dgw));
+//
+//                                                    //@rinku: send dummy rule packet to switch
+                                        try {
+                                                sendPacketToController("SWITCH", "rule", 101);
+						sendPacketToController("SWITCH", "rule", 101);
+                                        } catch (NumberFormatException e1) {
+                                                e1.printStackTrace();
+                                                } catch (IOException e1) {
+                                                        e1.printStackTrace();
+                                                }
+
 
 					response = new StringBuilder();
 					//NOT USED LATER uekey_guti_map, so not considered in state calc
@@ -1103,6 +1130,15 @@ class OnlineThread implements Runnable {
 
 					/* UPLINK   => ipv4srcAddr = UE IP and ipv4dstAddr = Sink IP   */
 					//fr.insertUplinkTunnelIngressRule(true, appId, flowRuleService, deviceId, UE_IP,Constants.dstSinkIpAddr, Integer.parseInt(tmpArray[3]), outPort);
+					//@rinku: send dummy rule packet to switch
+                                        try {
+                                                sendPacketToController("SWITCH", "rule", 101);
+                                        } catch (NumberFormatException e1) {
+                                                e1.printStackTrace();
+                                                } catch (IOException e1) {
+                                                        e1.printStackTrace();
+                                                }
+
 
 //                        deleteFlowRuleWithIP(dw, uePort, tmpArray[1]); // tmpArray[1] => UE IP
 					if(Constants.DEBUG){
@@ -1125,6 +1161,23 @@ class OnlineThread implements Runnable {
 						log.warn("DEFAULT SWITCH deleting downlink rule with for UE with IP = {}",tmpArray[1]);
 						log.warn(" and UE TEID = {}",tmpArray[2]);
 					}
+					//@rinku: send dummy rule packet to switch
+                                        try {
+                                                sendPacketToController("SWITCH", "rule", 101);
+                                        } catch (NumberFormatException e1) {
+                                                e1.printStackTrace();
+                                                } catch (IOException e1) {
+                                                        e1.printStackTrace();
+                                                }
+					//@rinku: send dummy rule packet to switch
+                                        try {
+                                                sendPacketToController("SWITCH", "rule", 101);
+                                        } catch (NumberFormatException e1) {
+                                                e1.printStackTrace();
+                                                } catch (IOException e1) {
+                                                        e1.printStackTrace();
+                                                }
+
 
 					// dpids[0] ==> SGW DPID   & dpids[1]==> PGW DPID
 //                        boolean status = sgw.detachUEFromSGW(switch_mapping.get(DatapathId.of(Constants.getSgwDpid(dw))), switch_mapping.get(pgw_dpid), DatapathId.of(Constants.getSgwDpid(dw)), pgw_dpid, Integer.parseInt(tmpArray[3]), tmpArray[1]);

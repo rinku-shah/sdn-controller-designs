@@ -260,6 +260,12 @@ bit<8> state_busy = 1;
                     standard_metadata.egress_spec =0;
                     return;
             }
+		//controller is sending dummy rule packet to switch
+	    else if(hdr.ipv4.protocol == PROTO_UDP && hdr.udp.dstPort == switch_port){
+		mark_to_drop();
+		return;
+	    }
+
                 //Outgoing TCP data packet reply for DGW(pcube)
             else if( hdr.ipv4.protocol == PROTO_TCP && hdr.ipv4.dstAddr == s1u_dgw_addr){
                     //ip_op_tun_s2_uplink.apply();

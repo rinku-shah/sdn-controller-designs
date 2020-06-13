@@ -26,6 +26,8 @@ const bit<32> s1u_dgw_addr = 0xC0A80202;
 // s3u - 3rd chain
 // s4u - 4th chain
 
+const bit<16> switch_port = 0x0BB9; //3001; for pushing dummy rules to switch
+
 const bit<32> s1u_sgw_addr = 0xC0A80203;
 const bit<32> s2u_sgw_addr = 0xC0A80603;
 const bit<32> s3u_sgw_addr = 0xC0A80803;

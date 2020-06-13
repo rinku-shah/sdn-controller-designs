@@ -52,6 +52,7 @@ public class Constants {
 	static final int START_UE_2 = 126; //151;
 	static final int START_UE_3 = 151; //201;
 	static final int START_UE_4 = 176; //251;
+	final static int SWITCH_PORT = 3001; //port to send dummy rule-like packets to switch
 	final static String UDP_PORT = "5001"; //listening port for UDP packets
 	final static String UDP_PORT_1 = "5002"; //listening port for UDP packets
 	final static String UDP_PORT_2 = "5003"; //listening port for UDP packets
