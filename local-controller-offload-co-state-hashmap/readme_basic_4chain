@@ -1,3 +1,7 @@
+**** There could be issues where the DGW sends packet to SGW but SGW does not receive 
+**** Use centralized byted-based lg here
+**** Keep time gap for connecting the sgw to root and local controllers
+
 1. TurboEPC-Basic
     This is a 4 chain experiment. Each chain consists of RAN, DGW and SGW. ALl the chains share the same PGW and root controller.
     Every SGW switch has a local ONOS controller running on it.
