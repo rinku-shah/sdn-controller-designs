@@ -1,0 +1,29 @@
+# Template used to create this container: /usr/share/lxc/templates/lxc-ubuntu
+# Parameters passed to the template:
+# For additional config options, please look at lxc.container.conf(5)
+
+# Common configuration
+lxc.include = /usr/share/lxc/config/ubuntu.common.conf
+
+# Container specific configuration
+lxc.rootfs = /var/lib/lxc/onos2-controller/rootfs
+lxc.mount = /var/lib/lxc/onos2-controller/fstab
+lxc.utsname = onos2-controller
+lxc.arch = amd64
+
+lxc.cgroup.memory.limit_in_bytes = 8G
+lxc.cgroup.cpuset.cpus = 0-3
+#-3
+
+# Network configuration
+lxc.network.type = veth
+lxc.network.flags = up
+lxc.network.link = lxcbr0
+lxc.network.hwaddr = 00:16:3e:57:d6:5a
+
+lxc.network.type = veth
+lxc.network.flags = up
+lxc.network.link = br0
+lxc.network.hwaddr = 00:16:3e:df:d3:8a
+lxc.network.ipv4 = 192.168.100.100/24
+
